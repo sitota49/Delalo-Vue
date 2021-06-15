@@ -48,7 +48,7 @@ body {
 .sidebar {
     display: none;
     background-color: #301934;
-    border-radius: 5px;
+    border-radius: 0px;
     
 }
     .sidebar > ul > li > a {
@@ -57,7 +57,7 @@ body {
 @media (min-width: 768px) {
     .sidebar {
         position: fixed;
-        top: 31px;
+        top: 0px;
         bottom: 0;
         left: 0;
         z-index: 1000;

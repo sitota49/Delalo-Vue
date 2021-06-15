@@ -1,4 +1,5 @@
 <template>
+<div class="contianer">
        <!-- @if (Model.reviewsForThis != null)
             {
                 var reviewsTruncated = Model.reviewsForThis.Skip(4 * ((int)Model.pageActive - 1)).ToList();
@@ -66,8 +67,10 @@
             <!-- }
             else
             { -->
-                <h1>No Review Yet!</h1>
+                 <h1>No Review Yet!</h1>
             <!-- } -->
+
+</div>
 </template>
 
 <script>
