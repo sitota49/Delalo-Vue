@@ -1,14 +1,14 @@
 <template>
-  <div class="container">
-    <router-view> </router-view>
-  </div>
+  <h1>Home Page</h1>
 </template>
 
 <script>
 
-
 export default {
-  name: 'App',
+  name: 'Home',
+  props: {
+   
+  },
   components: {
    
   },
@@ -16,10 +16,10 @@ export default {
     
   },
   methods: {
-  
-  },
+  }
 }
 </script>
 
-<style>
+<style scoped>
+
 </style>
