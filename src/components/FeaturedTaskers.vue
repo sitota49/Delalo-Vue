@@ -2,7 +2,7 @@
   <section class="taskers">
       <div class='container mx-auto mt-5 col-md-10 mt-100 cardrow' >
               <div class="header">
-                  <div class="title" style="color:black; font-weight:bold;">Featured Providers</div>
+                  <div class="title text-center" style="color:black; font-weight:bold;">Featured Providers</div>
               </div>
 
               <div class="row " style="justify-content: center; margin-top:50px;" id="featuredTaskers">

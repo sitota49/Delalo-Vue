@@ -1,7 +1,7 @@
 <template>
 <div class="container-fluid" >
   <Header/>
-  <div class="container content">
+  <div class="container-fluid content">
       <div class="back_img">
 
     <div class="container-fluid contback">
@@ -80,7 +80,9 @@
     </div>
 
       </div>
-
+  <div class="container-fluid d-flex px-5 mx-5 py-3row">
+         <h1 class="align-self-center text-center col-md-12 mt-4">Project Areas</h1>
+      </div>
     <ProjectAreas />
     
     <FeaturedTaskers/>
@@ -147,12 +149,16 @@ export default {
 }
 </script>
 
+
 <style scoped>
-div{
-  margin: 0;
-  padding: 0;
-}
-.content{
-  margin-top:80px;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900");
+
+@import url('../assets/css/style.css');
+
+.content {
+    margin-top: 80px;
 }
 </style>
+
