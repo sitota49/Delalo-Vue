@@ -17,7 +17,7 @@ import Footer from '../components/Footer.vue'
 import SearchProvider from '../components/SearchProvider.vue'
 
 export default {
-  name: 'Home',
+  name: 'ProviderList',
   props: {
    
   },

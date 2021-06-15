@@ -93,7 +93,7 @@ import Footer from '../components/Footer.vue'
 import FeaturedTaskers from '../components/FeaturedTaskers.vue'
 
 export default {
-  name: 'Home',
+  name: 'EachService',
   props: {
    
   },

@@ -4,6 +4,7 @@ import About from '../views/About'
 import Services from '../views/Services'
 import EachService from '../views/EachService'
 import ProviderList from '../views/ProviderList'
+import SingleProvider from '../views/SingleProvider'
 
 
 const routes = [
@@ -31,6 +32,11 @@ const routes = [
     path: '/Provider_list',
     name: 'ProviderList',
     component: ProviderList,
+  },
+  {
+    path: '/Single_Provider',
+    name: 'SingleProvider',
+    component: SingleProvider,
   },
 ]
 

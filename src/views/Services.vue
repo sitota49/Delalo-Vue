@@ -47,7 +47,7 @@ import Footer from '../components/Footer.vue'
 import ProjectAreas from '../components/ProjectAreas.vue'
 
 export default {
-  name: 'Home',
+  name: 'Services',
   props: {
    
   },
