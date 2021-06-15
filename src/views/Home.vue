@@ -81,57 +81,40 @@
 
       </div>
 
-      <div class="container-fluid d-flex px-5 mx-5 py-3row">
-         <h1 class="align-self-center text-center col-md-12 mt-4">Project Areas</h1>
-      </div>
-
-      <div class="container my-3 d-flex align-items-center">
-    <div class="container row mx-2">
-        <!-- @foreach (var item in Model.categoryList)
-        { -->
-
-            <div class="card col-md-4 p-3 cardsss" >
-                <a id="service-link" asp-page="/EachService" asp-route-id="@item.Id">
-                    <!-- <img id="hover-img" src="@item.Image" class="card-img-top" alt="..." style="height: 15rem"> -->
-                    <div class="card-body ">
-                        <h5 class="text-center">@item.Name</h5>
-                        
-                    </div>
-</a>
+    <ProjectAreas />
+    
+    <FeaturedTaskers/>
+   
+      <section class="section pb-0 z_three">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h3 class="section-title">Ready to Get Started?</h3>
             </div>
-        <!-- } -->
-    </div>
-      </div>
-
-      <section class="taskers">
-    <div class='container mx-auto mt-5 col-md-10 mt-100 cardrow' >
-        <div class="header">
-            <div class="title" style="color:black; font-weight:bold;">Featured Providers</div>
-        </div>
-
-        <div class="row " style="justify-content: center; margin-top:50px;" id="featuredTaskers">
-            <!-- @foreach (var provider in Model.TopProviders)
-            { -->
-                <div class="card cardrow2" style="width: 18rem; height: 15rem; margin-top: 10px; margin-bottom: 30px; ">
-                <a asp-page="/Single_Provider" asp-route-id="@provider.Id" asp-route-pag="1" style="text-decoration:none; color:black;">
-                    <div class="card-content">
-                        <div class="card-body p-0">
-                            <!-- <div class="profile"> <img src="@provider.Image" alt="@provider.FirstName @provider.LastName "> </div> -->
-                            <div class="card-title" style="font-size:20px;"> @provider.FirstName @provider.LastName<br /> <small>$@provider.PerHourWage per hour</small> <br> <small>@provider.JobsDone jobs done</small></div>
-                            <div class="card-subtitle">
-                                <!-- <p> <small class="text-muted" >@String.Format("{0:0.0}", provider.AverageRating) @for (var i = 0; i < (int)provider.AverageRating; i++) {<i class="fas fa-star warning" style="color: #FDCC0D "></i> }</small> </p> -->
-                            </div>
-                            <p class="text text-muted">Service: @provider.Category</p>
-                        </div>
-                    </div>
-                </a>
+            <div class="col-lg-4 col-sm-6 mb-lg- mb-4">
+                <div class="hover-bg-primary text-center position-relative px-4 py-5 rounded-lg shadow">
+                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1559058694/feature-1.png" class="img-fluid" alt="feature-image">
+                    <h5 class="pt-5 pb-3 text-capitalize card-title">Be a part</h5>
+                    <p class="mb-4">Hear that? The sweet sigh of relief. Start getting more done.</p> <a class="btn btn-outline-secondary" href="/AuthOption" asp-route-providerId="0" data-abc="true">Sign Up</a>
                 </div>
-            <!-- } -->
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-lg- mb-4">
+                <div class="hover-bg-primary text-center position-relative px-4 py-5 rounded-lg shadow">
+                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1559058716/feature-2.png" class="img-fluid" alt="feature-image">
+                    <h5 class="pt-5 pb-3 text-capitalize card-title">How to use?</h5>
+                    <p class="mb-4"> That might be little bit risky to have crew member like them.</p> <a class="btn btn-outline-secondary" href="/About" data-abc="true">Read more</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 mb-lg- mb-4">
+                <div class="hover-bg-primary text-center position-relative px-4 py-5 rounded-lg shadow">
+                    <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1559058733/feature-3.png" class="img-fluid" alt="feature-image">
+                    <h5 class="pt-5 pb-3 text-capitalize card-title">optimized data</h5>
+                    <p class="mb-4">Grow your own business while saving the day for busy neighbors.</p> <a class="btn btn-outline-secondary" href="/BecomeaProvider" data-abc="true"> Become a Provider</a>
+                </div>
+            </div>
         </div>
-
-
     </div>
-</section>
+      </section>
   </div>
   <Footer />
 </div>
@@ -143,6 +126,8 @@
 
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
+import FeaturedTaskers from '../components/FeaturedTaskers.vue'
+import ProjectAreas from '../components/ProjectAreas.vue'
 
 export default {
   name: 'Home',
@@ -151,7 +136,9 @@ export default {
   },
   components: { 
     Header,
-    Footer},
+    Footer,
+    FeaturedTaskers,
+    ProjectAreas},
   data() {
     
   },

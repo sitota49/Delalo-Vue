@@ -117,12 +117,6 @@ footer {
     color: white;
 }
 
-
-#row-row {
-    /* margin-top: 50px; */
-    /* background-color: aqua; */
-}
-
 #row-search {
     margin-top: 50px;
     margin-bottom: auto;
