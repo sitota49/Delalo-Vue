@@ -1,0 +1,180 @@
+<template>
+    
+<div class="dashboard-content-container" data-simplebar>
+
+    <div class="dashboard-content-inner">
+
+
+        <div class="dashboard-headline">
+            <h3>Profile</h3>
+        </div>
+    </div>
+    <!-- @foreach (var item in Model.userList) -->
+    <!-- { -->
+        <!-- if (HttpContextAccessor.HttpContext.Session.GetString("email") == item.Email.ToString()) -->
+        <!-- { -->
+
+            <div class="row">
+
+                <!-- Dashboard Box -->
+                <form method="post">
+                    <div class="col-xl-12" id="dashbord">
+                        <div class="dashboard-box margin-top-0">
+
+                            <!-- Headline -->
+                            <div class="headline">
+                                <h3><i class="icon-material-outline-account-circle"></i> My Account</h3>
+
+                                <div class="content with-padding padding-bottom-0">
+
+                                    <div class="row">
+
+                                        <div class="col-auto">
+                                            <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar" style="border-radius: 50%">
+                                                <img class="profile-pic" src="" alt="" style="border-radius: 50%" />
+                                                <div class="upload-button"></div>
+                                                <input asp-for="user.Image" class="file-upload" type="file" accept="image/*" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col">
+                                            <div class="row">
+
+                                                <div class="col-xl-6">
+                                                    <div class="submit-field">
+                                                        <label asp-for="user.FirstName">First Name</label>
+                                                        <!--<h5 asp-for="User.">First Name</h5>-->
+                                                        <input asp-for="@Model.user.FirstName" type="text" class="with-border" value="" placeholder= item.FirstName)>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6">
+                                                    <div class="submit-field">
+                                                        <label asp-for="user.LastName">Last Name</label>
+
+                                                        <input asp-for="@Model.user.LastName" type="text" class="with-border" value="" placeholder=item.LastName)>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6">
+                                                    <!-- Account Type -->
+                                                    <div class="submit-field">
+                                                        <label asp-for="user.PhoneNo">PhoneNo</label>
+                                                        <input asp-for="@Model.user.PhoneNo" type="text" class="with-border" value="" placeholder=item.PhoneNo)/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-xl-6">
+                                                    <div class="submit-field">
+                                                        <label asp-for="user.Email">Email</label>
+
+                                                        <input asp-for="@Model.user.Email" type="email"  class="with-border" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-6">
+                                                    <div class="submit-field">
+                                                        <label asp-for="user.Address"></label>
+                                                        <select asp-for="user.Address" class="form-control" title="Select Job Type" data-live-search="true" placeholder= item.Address)>
+
+                                                            <option value="Addis Ababa">Addis Ababa</option>
+                                                            <option value="Bahir Dar">Bahir Dar</option>
+                                                            <option value="Gondar">Gondar</option>
+                                                            <option value="Hawassa">Hawassa</option>
+                                                            <option value="Dire Dawa">Dire Dawa</option>
+                                                            <option value="Adama">Adama</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--password here-->
+
+                        <div class="col-xl-12" id="password">
+                            <div id="test1" class="dashboard-box">
+
+                                <!-- Headline -->
+                                <div class="headline">
+                                    <h3><i class="icon-material-outline-lock"></i> Password & Security</h3>
+                                </div>
+
+                                <div class="content with-padding">
+                                    <div class="row">
+
+
+                                        <div class="col-xl-4">
+                                            <div class="submit-field">
+                                                <h5>Password</h5>
+                                                <input asp-for="userdetails.Password" type="password" class="with-border">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-4">
+                                            <div class="submit-field">
+                                                <h5>Confirm Password</h5>
+                                                <input asp-for="@Model.user.Password" type="password" class="with-border">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Dashboard Box -->
+
+                        </div>
+
+                        <!-- Button -->
+                        <div class="col-xl-12">
+                            <button class="btn big margin-top-30" style="margin-top:20px; width:100px; height:40px; font-size:18px;background-color:#301934; color:#ffffff;" type="submit">
+                                Update
+                            </button>
+
+                        </div>
+                        </div>
+                </form>
+
+            </div>
+            <!-- Row / End -->
+            <!-- Footer -->
+
+        <!-- }
+    } -->
+
+
+</div>
+</template>
+
+<script>
+export default {
+  name: 'Profile',
+  props: {
+   
+  },
+  components: {
+   
+  },
+  data() {
+    return {
+    users:[],
+}
+    
+  },
+  methods: {
+  }
+}
+</script>
+
+<style>
+
+    /* @import '../assets/styles.css'; */
+    /* @import '../assets/blue.css'; */
+    @import '../assets/style2.css';
+</style>
