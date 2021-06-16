@@ -20,7 +20,7 @@
 
                                             <th>Recommendation</th>
                                             <th>PerHourWage</th>
-                                            <th>Delete</th>
+                                          
 
                                         </tr>
                                     </thead>
@@ -44,7 +44,7 @@
                                                         <td>{{provider.jobs_done}}</td>
                                                         <td><a href="{{provider.recommendation}}" style="text-decoration: none;">Recommendation Link</a> </td>
                                                         <td>{{provider.per_hour_wage}}</td>
-                                                        <td> <a :href="`/DeleteProvider/${provider.provider_id}`" ><i class="fas fa-trash-alt" style="color:#dc3545;"></i></a> </td>
+                                                        
 
 
 

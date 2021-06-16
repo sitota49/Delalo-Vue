@@ -23,8 +23,8 @@ import AdminDashboard from '../views/AdminDashboard'
 import AdminCat from '../views/AdminCat'
 import AdminOrder from '../views/AdminOrder'
 import AdminProvider from '../views/AdminProvider'
-import DeleteProvider from '../views/DeleteProvider'
-import DeleteCategory from '../views/DeleteCategory'
+import DeleteCategory from '../views/DeleteCategory.vue'
+
 
 const routes = [
   {
@@ -113,7 +113,7 @@ const routes = [
     component: SingleProvider,
   },
   {
-    path: '/AddCategory/:id',
+    path: '/AddCategory/',
     name: 'AddCategory',
     component: AddCategory,
   },
@@ -136,6 +136,11 @@ const routes = [
     path: '/AdminProvider',
     name: 'AdminProvider',
     component: AdminProvider,
+  },
+  {
+    path: '/DeleteCategory/:id',
+    name: 'DeleteCategory',
+    component: DeleteCategory,
   },
  
   

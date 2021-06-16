@@ -11,15 +11,15 @@
                             <h2> <a href="./AdminDashboard"><i class="fa fa-arrow-left"></i></a></h2>
                             
                             <h3>Add New Category</h3>
-                            <form method="post">
+                            <form  @submit="onSubmit">
                                 <div class="form-group">
-                                    <label asp-for="Category.Name">Name</label>
-                                    <input asp-for="Category.Name" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter category name" style="width:400px;">
+                                    <label >Name</label>
+                                    <input type="text" v-model="name" name="name"   class="form-control" aria-describedby="emailHelp" placeholder="Enter category name" style="width:400px;">
 
                                 </div>
                                 <div class="form-group">
                                     <label asp-for="Category.Description">Description</label>
-                                    <input asp-for="Category.Description" type="text" class="form-control" placeholder="Say something about it..." style="width:400px; height:100px;">
+                                    <input type="text" v-model="description" name="description"  class="form-control" placeholder="Say something about it..." style="width:400px; height:100px;">
                                 </div>
 
                                 <div class="col-auto">
@@ -27,7 +27,7 @@
                                     <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
                                         <img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
                                         <div class="upload-button"></div>
-                                        <input asp-for="Category.Image" class="file-upload" type="file" accept="image/*" />
+                                        <input  name="image"  class="file-upload" type="file" accept="image/*" />
                                     </div>
                                 </div>
 
@@ -61,9 +61,71 @@ export default {
     
    },
   data() {
+      return{
+           name: '',
+      description: '',
+      image: "null",
+      }
     
   },
   methods: {
+    async addCategory(category) {
+
+        const res = await fetch('http://localhost:51044/delalo/categories', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body:JSON.stringify(category)
+      })
+    console.log("getting here")
+    console.log(res);
+    console.log(await res.json())
+    const data = "" //await res.json()
+    console.log("D",data);
+      
+      res.status === 200
+          ? window.location.href ='../AdminCat'
+          : alert('Error creating category')
+   
+
+     
+    
+
+    },
+
+    onSubmit(e) {
+      e.preventDefault()
+
+      if (!this.name) {
+        alert('Please add a category name')
+        return
+      }
+      
+      if (!this.description) {
+        alert('Please add a category description')
+        return
+      }
+
+      const newCategory = {
+        
+        "name": this.name,
+        "description": this.description,
+        "image": this.image,
+        "num_of_providers": 0
+      }
+
+     this.addCategory(newCategory);
+
+      this.name = ''
+      this.description = ''
+      this.image = null
+
+    },
+
+   
+    
   }
 }
 </script>

@@ -19,17 +19,16 @@
                                         </tr>
                                     </thead>
                                     <tbody :key="category.id" v-for="category in categories">
-                                        <!-- @foreach (var item in Model.categoryList)
-                                        { -->
+                                       
                                         <tr>
 
-                                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                            <td>{{category.name}}</td>
+                                            <td>{{category.description}}</td>
                                             <td>
                                                 <!-- <img src="@Html.DisplayFor(modelItem => item.Image)" width="50px" height="50px" /> -->
                                             </td>
-                                            <td>@Html.DisplayFor(modelItem => item.NumProviders)</td>
-                                            <td> <a href="./DeleteCategory"  @delete-category="$emit('delete-category', category.id)"><i class="fas fa-trash-alt" style="color:#dc3545;"></i></a> </td>
+                                            <td>{{category.num_of_providers}}</td>
+                                            <td> <a :href="`/DeleteCategory/${category.id}`"><i class="fas fa-trash-alt" style="color:#dc3545;"></i></a> </td>
 
                                         </tr>
                                                  

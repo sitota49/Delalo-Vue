@@ -71,10 +71,11 @@ export default {
     
     async created() {
     const res= await this.fetchCategories();
-    if (res.results.length !==0){
-        this.categories=res.results;
+    if (res.length !==0){
+        this.categories=res;
     }
-   
+
+ 
     
   },
 }
