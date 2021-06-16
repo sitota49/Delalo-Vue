@@ -59,7 +59,7 @@
 </div>
 
 
-<FeaturedTaskers />
+<FeaturedTaskers :topProviders="topProviders"/>
 <div class="container cont5">
     <div class="row row5 d-flex">
         <div class="col-md-6 align-self-end pr-5">
@@ -102,7 +102,9 @@ export default {
     Footer, 
     FeaturedTaskers},
   data() {
-    
+    return {
+      topProviders:[],
+    }
   },
   methods: {
       async fetchTopProvidersWithCategory(catId) {
