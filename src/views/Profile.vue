@@ -2,7 +2,7 @@
     
 <div class="dashboard-content-container" data-simplebar>
 
-    <div class="dashboard-content-inner">
+    <div class="dashboard-content-inner" >
 
 
         <div class="dashboard-headline">
@@ -29,11 +29,11 @@
 
                                     <div class="row">
 
-                                        <div class="col-auto">
+                                        <div class="col-auto" :key="user.id" v-for="user in users">
                                             <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar" style="border-radius: 50%">
                                                 <img class="profile-pic" src="" alt="" style="border-radius: 50%" />
                                                 <div class="upload-button"></div>
-                                                <input asp-for="user.Image" class="file-upload" type="file" accept="image/*" />
+                                                <input class="file-upload" type="file" accept="image/*" />
                                             </div>
                                         </div>
 
@@ -41,40 +41,40 @@
                                             <div class="row">
 
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field">
-                                                        <label asp-for="user.FirstName">First Name</label>
-                                                        <!--<h5 asp-for="User.">First Name</h5>-->
-                                                        <input asp-for="@Model.user.FirstName" type="text" class="with-border" value="" placeholder= item.FirstName)>
+                                                    <div class="submit-field" :key="user.id" v-for="user in users">
+                                                        <label>First Name</label>
+                                                        <!-- <h5 >{{user.firstname}}</h5> -->
+                                                        <input type="text" class="with-border" value="" placeholder= {{user.firstname}}>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field">
-                                                        <label asp-for="user.LastName">Last Name</label>
+                                                    <div class="submit-field" :key="user.id" v-for="user in users">
+                                                        <label>Last Name</label>
 
-                                                        <input asp-for="@Model.user.LastName" type="text" class="with-border" value="" placeholder=item.LastName)>
+                                                        <input type="text" class="with-border" value="" placeholder={{user.lastname}}>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xl-6">
                                                     <!-- Account Type -->
-                                                    <div class="submit-field">
-                                                        <label asp-for="user.PhoneNo">PhoneNo</label>
-                                                        <input asp-for="@Model.user.PhoneNo" type="text" class="with-border" value="" placeholder=item.PhoneNo)/>
+                                                    <div class="submit-field" :key="user.id" v-for="user in users">
+                                                        <label >PhoneNo</label>
+                                                        <input type="text" class="with-border" value="" placeholder={{user.phone}}/>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field">
-                                                        <label asp-for="user.Email">Email</label>
+                                                    <div class="submit-field" :key="user.id" v-for="user in users">
+                                                        <label >Email</label>
 
-                                                        <input asp-for="@Model.user.Email" type="email"  class="with-border" />
+                                                        <input type="email"  class="with-border" placeholder={{user.email}}/>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field">
-                                                        <label asp-for="user.Address"></label>
-                                                        <select asp-for="user.Address" class="form-control" title="Select Job Type" data-live-search="true" placeholder= item.Address)>
+                                                    <div class="submit-field" :key="user.id" v-for="user in users">
+                                                        <label >Address</label>
+                                                        <select class="form-control" title="Select Job Type" data-live-search="true" placeholder= {{user.address}})>
 
                                                             <option value="Addis Ababa">Addis Ababa</option>
                                                             <option value="Bahir Dar">Bahir Dar</option>
@@ -110,16 +110,16 @@
 
 
                                         <div class="col-xl-4">
-                                            <div class="submit-field">
+                                            <div class="submit-field" :key="user.id" v-for="user in users">
                                                 <h5>Password</h5>
-                                                <input asp-for="userdetails.Password" type="password" class="with-border">
+                                                <input type="password" class="with-border">
                                             </div>
                                         </div>
 
                                         <div class="col-xl-4">
-                                            <div class="submit-field">
+                                            <div class="submit-field" :key="user.id" v-for="user in users">
                                                 <h5>Confirm Password</h5>
-                                                <input asp-for="@Model.user.Password" type="password" class="with-border">
+                                                <input type="password" class="with-border">
                                             </div>
                                         </div>
                                     </div>
@@ -168,7 +168,14 @@ export default {
     
   },
   methods: {
-  }
+    async fetchUsers() {
+      const res = await fetch('http://localhost:51044/delalo/users')
+
+      const data = await res.json()
+
+      return data
+  },
+}
 }
 </script>
 

@@ -13,6 +13,7 @@ import UserProfile from '../views/userProfile'
 import Profile from '../views/Profile'
 import Orders from '../views/Orders'
 import Jobs from '../views/Jobs'
+import BecomeAProvider from '../views/BecomeAProvider'
 
 import Services from '../views/Services'
 import EachService from '../views/EachService'
@@ -23,8 +24,8 @@ import AdminDashboard from '../views/AdminDashboard'
 import AdminCat from '../views/AdminCat'
 import AdminOrder from '../views/AdminOrder'
 import AdminProvider from '../views/AdminProvider'
-import DeleteProvider from '../views/DeleteProvider'
-import DeleteCategory from '../views/DeleteCategory'
+// import DeleteProvider from '../views/DeleteProvider'
+// import DeleteCategory from '../views/DeleteCategory'
 
 const routes = [
   {
@@ -73,7 +74,7 @@ const routes = [
     component: Errors,
   },
   {
-    path: '/userProfile',
+    path: '/userProfile/:id',
     name: 'UserProfile',
     component: UserProfile,
   },
@@ -136,6 +137,11 @@ const routes = [
     path: '/AdminProvider',
     name: 'AdminProvider',
     component: AdminProvider,
+  },
+  {
+    path: '/becomeAProvider',
+    name: 'BecomeAProvider',
+    component: BecomeAProvider,
   },
  
   

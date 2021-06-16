@@ -172,12 +172,6 @@ export default {
 
 </script>
 
-<<<<<<< HEAD
-<style>
-
-    @import '../assets/styles.css';
-</style>
-=======
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
@@ -191,4 +185,3 @@ export default {
 }
 </style>
 
->>>>>>> b8f21ada04e524341de81bab264fe48e72fa8596

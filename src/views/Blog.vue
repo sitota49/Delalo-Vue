@@ -30,7 +30,7 @@
                     <div class="d-flex col-md-3">
                         <div class="d-flex flex-column justify-content-start user-profile w-100">
                             <div class="d-flex user">
-                                <img class="rounded-circle" src="../assets/logo.jpg" width="50">
+                                <img class="rounded-circle" src="../assets/logo2.jpg" width="50">
                                 <div class="about ml-1"><span class="d-block text-black font-weight-bold">Anytime</span><span>Cloud consultant</span></div>
                             </div>
 
@@ -63,7 +63,7 @@
                     <div class="d-flex col-md-3">
                         <div class="d-flex flex-column justify-content-start user-profile w-100">
                             <div class="d-flex user">
-                                <img class="rounded-circle" src="../assets/logo.jpg" width="50">
+                                <img class="rounded-circle" src="../assets/logo2.jpg" width="50">
                                 <div class="about ml-1"><span class="d-block text-black font-weight-bold">Anyone</span><span>Cloud consultant</span></div>
                             </div>
 
@@ -95,7 +95,7 @@
                     <div class="d-flex col-md-3">
                         <div class="d-flex flex-column justify-content-start user-profile w-100">
                             <div class="d-flex user">
-                                <img class="rounded-circle" src="../assets/logo.jpg" width="50">
+                                <img class="rounded-circle" src="../assets/logo2.jpg" width="50">
                                 <div class="about ml-1"><span class="d-block text-black font-weight-bold">Anywhere</span><span>Cloud consultant</span></div>
                             </div>
 
