@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+ 
     <router-view> </router-view>
-  </div>
+
 </template>
 
 <script>
@@ -20,8 +20,10 @@ export default {
   },
 }
 </script>
+<style scoped>
+@import url('./assets/css/site.css');
 
-<style>
+
 @import'~bootstrap/dist/css/bootstrap.css'
  
 </style>
