@@ -24,38 +24,32 @@
 
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <!-- @foreach (var item in Model.providerList)
-                                        {
-                                            @foreach (var uid in Model.userProviders)
-                                            {
-                                                var userId = uid.Id;
-                                                if (item.UserId == userId && uid.Role=="provider")
-                                                { -->
+                                    <tbody  :key="provider.provider_id" v-for="provider in providers">
+                                   
                                                     <tr>
 
                                                         <td>
-                                                            <span>@Html.DisplayFor(modelItem => uid.FirstName)</span>
-                                                            <span>@Html.DisplayFor(modelItem => uid.LastName)</span>
+                                                            <span>{{provider.firstName}}</span>
+                                                            <span>{{provider.lastName}} </span>
+
                                                         </td>
                                                         <td>
+                                                            {{provider.image}}
                                                             <!-- <img src="@Html.DisplayFor(modelItem => uid.Image)" width="50px" height="50px" /> -->
                                                         </td>
-                                                        <td>@Html.DisplayFor(modelItem => item.Category)</td>
-                                                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                                        <td>{{provider.category}}</td>
+                                                        <td>{{provider.description}}</td>
 
 
-                                                        <td>@Html.DisplayFor(modelItem => item.JobsDone)</td>
-                                                        <td><a href="@Html.DisplayFor(modelItem => item.Recommendation)" style="text-decoration: none;">Recommendation Link</a> </td>
-                                                        <td>@Html.DisplayFor(modelItem => item.PerHourWage)</td>
-                                                        <td> <a href="./DeleteProvider" asp-route-id="@item.UserId"><i class="fas fa-trash-alt" style="color:#dc3545;"></i></a> </td>
+                                                        <td>{{provider.jobs_done}}</td>
+                                                        <td><a href="{{provider.recommendation}}" style="text-decoration: none;">Recommendation Link</a> </td>
+                                                        <td>{{provider.per_hour_wage}}</td>
+                                                        <td> <a href="./DeleteProvider"  @delete-provider="$emit('delete-provider', provider.provider_id)"><i class="fas fa-trash-alt" style="color:#dc3545;"></i></a> </td>
 
 
 
                                                     </tr>
-                                                <!-- }
-                                            }
-                                        } -->
+                                              
                                      
                                     </tbody>
                                     
@@ -71,33 +65,12 @@
 export default {
      name: 'ProviderDataTable',
   props: {
-   
+      providers:Array,
   },
  
-  data() {
-     return {
-      providers:{},
-    }
-  },
+ 
   methods: {
-    // async fetchProviders() {
-    //   const res = await fetch('http://localhost:51044/delalo/providers')
-
-    //   const data = await res.json()
-
-    //   return data
-    // },
-    // async fetchProvider(id) {
-    //   const res = await fetch(`api/tasks/${id}`)
-
-    //   const data = await res.json()
-
-    //   return data
-//     // },
-//     async created() {
-//         // this.providers = await this.fetchProviders()
-//         console.log("this.providers");
-//   },
+    
   }
 }
 
