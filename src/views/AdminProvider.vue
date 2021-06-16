@@ -9,7 +9,7 @@
     <div class="container-fluid">
        
             <AdminSidebar />
-            <ProviderDataTable :providers="providers" @delete-provider="deleteProvider"/>
+            <ProviderDataTable :providers="providers" />
               
     </div>
    </div>
@@ -47,30 +47,16 @@ export default {
 
       return data
     },
-     async fetchProvider(id) {
-      const res = await fetch(`http://localhost:51044/delalo/providers/${id}`)
-
-      const data = await res.json()
-
-      return data
-    },
-      async deleteProvider(id) {
-      if (confirm('Are you sure?')) {
-        const res = await fetch(`http://localhost:51044/delalo/providers/${id}`, {
-          method: 'DELETE',
-        })
-
-        res.status === 200
-          ? (this.providers = this.providers.filter((provider) => provider.id !== id))
-          : alert('Error deleting provider')
-      }
-    },
+     
+     
 
   },
     
     async created() {
     const res= await this.fetchProviders();
-    this.providers=res.results;
+    if (res.results.length !==0){
+        this.providers=res.results;
+    }
    
     
   },

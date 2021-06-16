@@ -85,7 +85,7 @@
       </div>
     <ProjectAreas />
     
-    <FeaturedTaskers/>
+    <FeaturedTaskers :topProviders="topProviders"/>
    
       <section class="section pb-0 z_three">
     <div class="container">
@@ -142,11 +142,34 @@ export default {
     FeaturedTaskers,
     ProjectAreas},
   data() {
+     return {
+      topProviders:[],
+    }
+  },
+  methods:{
+      async fetchTopProviders() {
+      const res = await fetch('http://localhost:51044/delalo/providers/top')
+
+      const data = await res.json()
+
+      return data
+    },
+    
+    
+
+  },
+    
+    async created() {
+    const res= await this.fetchTopProviders();
+    if (res.results.length !==0){
+        this.topProviders=res.results;
+    }
+   
     
   },
-  methods: {
-  }
 }
+
+
 </script>
 
 

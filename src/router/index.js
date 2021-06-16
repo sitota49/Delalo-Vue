@@ -30,7 +30,7 @@ const routes = [
     component: Services,
   },
   {
-    path: '/eachService',
+    path: '/eachService/:id',
     name: 'EachService',
     component: EachService,
   },
@@ -40,12 +40,12 @@ const routes = [
     component: ProviderList,
   },
   {
-    path: '/Single_Provider',
+    path: '/Single_Provider/:id',
     name: 'SingleProvider',
     component: SingleProvider,
   },
   {
-    path: '/AddCategory',
+    path: '/AddCategory/:id',
     name: 'AddCategory',
     component: AddCategory,
   },
@@ -69,16 +69,7 @@ const routes = [
     name: 'AdminProvider',
     component: AdminProvider,
   },
-  {
-    path: '/DeleteProvider',
-    name: 'DeleteProvider',
-    component: DeleteProvider,
-  },
-  {
-    path: '/DeleteCategory',
-    name: 'DeleteCategory',
-    component: DeleteCategory,
-  },
+ 
   
 ]
 

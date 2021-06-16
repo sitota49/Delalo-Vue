@@ -105,7 +105,22 @@ export default {
     
   },
   methods: {
-  }
+      async fetchTopProvidersWithCategory(catId) {
+      const res = await fetch(`http://localhost:51044/delalo/providers/top/${catId}`)
+
+      const data = await res.json()
+
+      return data
+    },
+  },
+   async created() {
+    // const res= await this.fetchTopProvidersWithCategory();
+    // if (res.results.length !==0){
+    //     this.topProviders=res.results;
+    // }
+   
+    
+  },
 }
 </script>
 

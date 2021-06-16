@@ -9,54 +9,9 @@
     <div class="container-fluid">
        
             <AdminSidebar />
+            <CategoryDataTable :categories="categories" @delete-category="deleteCategory" @add-category="addCategory" />
 
-            <div class="col-sm-12 main" style="margin-top:10%;margin-left:2%;">
-                <div class="row">
-                    <div class="col-sm-12 main">
-                        <div class="row row1">
-                            <h3 class="page-header">Category List</h3>
-                            <!-- <h2 class="sub-header">Section title</h2> -->
-                            <div class="table-responsive">
-
-                                <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Description</th>
-                                            <th>Image</th>
-                                            <th>No. of Providers</th>
-                                            <th>Update</th>
-                                            <th>Delete</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- @foreach (var item in Model.categoryList)
-                                        { -->
-                                        <tr>
-
-                                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                            <td>@Html.DisplayFor(modelItem => item.Description)</td>
-                                            <td>
-                                                <!-- <img src="@Html.DisplayFor(modelItem => item.Image)" width="50px" height="50px" /> -->
-                                            </td>
-                                            <td>@Html.DisplayFor(modelItem => item.NumProviders)</td>
-                                            <td> <a asp-page="./EditCategory" asp-route-id="@item.Id" style="text-decoration:none;"><i class="fas fa-edit" style="color: #ffc107;"></i></a> </td>
-                                            <td><a asp-page="./DeleteCategory" asp-route-id="@item.Id" style="text-decoration:none;"><i class="fas fa-trash-alt" style="color:#dc3545;"></i></a></td>
-
-                                        </tr>
-                                                 
-                                    </tbody>
-
-                                </table>
-                            </div>
-
-                        </div>
-                        <a href="./AddCategory" class="btn" style="margin-top:20px; width:170px; height:40px; font-size:18px;background-color:#301934; color:#ffffff;">Add New Category</a>
-
-                    </div>
-                </div>
-            </div>
+         
     </div>
    </div>
  
@@ -67,6 +22,7 @@
 
 import AdminHeader from '../components/AdminHeader.vue'
 import AdminSidebar from '../components/AdminSidebar.vue'
+import CategoryDataTable from '../components/CategoryDataTable.vue'
 
 export default {
   name: 'AdminCat',
@@ -75,15 +31,54 @@ export default {
   },
   components: { 
       AdminHeader,
-      AdminSidebar
+      AdminSidebar,
+      CategoryDataTable
     
    },
-  data() {
+   data() {
+     return {
+      categories:[],
+    }
+  },
+  methods:{
+      async fetchCategories() {
+      const res = await fetch('http://localhost:51044/delalo/categories')
+
+      const data = await res.json()
+
+      return data
+    },
+     async fetchCategory(id) {
+      const res = await fetch(`http://localhost:51044/delalo/categories/${id}`)
+
+      const data = await res.json()
+
+      return data
+    },
+      async deltedCategory(id) {
+      if (confirm('Are you sure?')) {
+        const res = await fetch(`http://localhost:51044/delalo/categories/${id}`, {
+          method: 'DELETE',
+        })
+
+        res.status === 200
+          ? (this.providers = this.providers.filter((category) => category.id !== id))
+          : alert('Error deleting provider')
+      }
+    },
+
+  },
+    
+    async created() {
+    const res= await this.fetchCategories();
+    if (res.results.length !==0){
+        this.categories=res.results;
+    }
+   
     
   },
-  methods: {
-  }
 }
+
 </script>
 
 <style scoped>

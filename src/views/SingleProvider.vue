@@ -1,6 +1,7 @@
 <template>
 <div class="container-fluid" >
   <Header/>
+
 <div class="container content">
    <div class="single-page-header freelancer-header mt-5" data-background-image="images/single-freelancer.jpg">
     <div class="container">
@@ -12,10 +13,10 @@
                             <!-- <img src="../.@Model.providerUser.Image" alt=""> -->
                             </div>
                         <div class="header-details">
-                            <h3>@Model.providerUser.FirstName @Model.providerUser.LastName</h3>
+                            <h3>{{provider.user_info.firstname}} {{provider.user_info.lastname}} </h3>
                             <ul>
-                                <!-- <li><div class="star-rating" data-rating="@String.Format("{0:0.0}", Model.providerUser.AverageRating)"></div></li> -->
-                                <li><i class="fas fa-map-marker-alt"></i>&nbsp;@Model.providerUser.Address</li>
+                                <li><div class="star-rating" :data-rating="Math.trunc(provider.prov_info.average_rating*10)/10"></div></li>
+                                <li><i class="fas fa-map-marker-alt"></i>&nbsp;{{provider.user_info.address}} </li>
                                 <li><div class="verified-badge-with-title">Verified</div></li>
                             </ul>
                         </div>
@@ -38,7 +39,7 @@
             <!-- Page Content -->
             <div class="single-page-section">
                 <h3 class="margin-bottom-25">About Me</h3>
-                <p>@Model.providerUser.Description</p>
+                <p>{{provider.prov_info.description}}</p>
             </div>
 
          <ReviewList/>
@@ -54,8 +55,8 @@
 
                 <!-- Profile Overview -->
                 <div class="profile-overview">
-                    <div class="overview-item"><strong>$@Model.providerUser.PerHourWage</strong><span>Hourly Rate</span></div>
-                    <div class="overview-item"><strong>@Model.providerUser.JobsDone</strong><span>Jobs Done</span></div>
+                    <div class="overview-item"><strong>{{provider.prov_info.per_hour_wage}}</strong><span>Hourly Rate</span></div>
+                    <div class="overview-item"><strong>{{provider.prov_info.jobs_done}}</strong><span>Jobs Done</span></div>
                 </div>
 
             
@@ -108,7 +109,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                Are You sure you want to hire @Model.providerUser.FirstName @Model.providerUser.LastName?
+                Are You sure you want to hire {{provider.user_info.firstname}} {{provider.user_info.lastname}}?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -151,11 +152,32 @@ export default {
     Footer,
     ReviewList
   },
-  data() {
-    
+   data() {
+     return {
+        id: this.$route.params.id,
+        provider:null,
+    }
   },
-  methods: {
-  }
+  methods:{
+      async fetchProvider(id) {
+      const res = await fetch(`http://localhost:51044/delalo/providers/${id}`)
+
+      const data = await res.json()
+
+      return data
+    },
+    
+    
+
+  },
+    
+    async created() {
+    const res= await this.fetchProvider(this.id);
+    if(res){
+
+        this.provider = res;
+    }
+    }
 }
 </script>
 
