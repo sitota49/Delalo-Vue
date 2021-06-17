@@ -1,193 +1,61 @@
 <template>
     
 <div>
+<Header />
 <br>
-<div class="container mt-5" style="margin-top: 6rem!important;">
-    <div class="row">
-        <div class="col-2">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
-                <a class="nav-link active" id="v-pills-jobs-tab" data-toggle="pill" href="#v-pills-jobs" role="tab" aria-controls="v-pills-jobs" aria-selected="false">Jobs</a>
-                <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="true">History</a>
-            </div>
-        </div>
-        <div class="col-10">
-            <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-jobs" role="tabpanel" aria-labelledby="v-pills-jobs-tab">
-                    <div class="container">
+<JobsDataTable :jobs="jobs"  />
 
-                        <!-- @if (Model._orderList.Count != 0 || Model.acceptedOrder != null)
-                        { -->
-                            <table class="table">   
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Seeker Name</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Details</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- @if (Model.acceptedOrder == null)
-                                    {
-                                        foreach (var item in Model._orderList)
-                                        {
-                                            var user = Model._mycontext.Users.Where(u => u.Id == item.SeekerId).SingleOrDefault(); -->
-                                            <tr>
-                                                <th scope="row">@user.FirstName @user.LastName</th>
-                                                <td>@user.Address</td>
-                                                <td>
-                                                    <form method="post">
-                                                        <button asp-route-orderId="@item.Id" asp-page-handler="accept" class="btn btn-success">Accept</button>
-                                                        <button asp-route-orderId="@item.Id" asp-page-handler="decline" class="btn btn-danger">Decline</button>
-                                                    </form>
-                                                </td>
-                                                <td>Not available</td>
-                                            </tr>
-                                        <!-- }
-                                    }
-                                    else
-                                    {
-                                        var ordersAwaiting = Model._orderList.Count();
-                                        var userUndertaking = Model._mycontext.Users.Where(u => u.Id == Model.acceptedOrder.SeekerId).FirstOrDefault();
-                                        var phoneNo = userUndertaking.PhoneNo;
-                                        var uniqueCode = Model.acceptedOrder.UniqueCode.ToString(); -->
-                                        <tr>
-                                            <th scope="row">@userUndertaking.FirstName @userUndertaking.LastName</th>
-                                            <td>@userUndertaking.Address</td>
-                                            <td>Undertaking...</td>
-                                            <td>
-                                                <p>Phone Number: @phoneNo</p>
-                                                <p>Unique code: @uniqueCode</p>
-                                            </td>
-                                        </tr>
-                                         <!-- if (ordersAwaiting > 1)
-                                        { -->
-                                            <tr>
-                                                <td colspan="3" class="text-center">
-                                                    You have @ordersAwaiting other requests waiting. Finish the task at hand to accept another one
-                                                </td>
-                                            </tr>
-                                        <!-- }
-                                        else if (ordersAwaiting > 0)
-                                        { -->
-                                            <tr>
-                                                <td colspan="3" class="text-center">
-                                                    You have @ordersAwaiting other request waiting. Finish the task at hand to accept another one
-                                                </td>
-                                            </tr>
-                                        <!-- }
-
-                                    } -->
-                                </tbody>
-                            </table>
-
-
-                        <!-- } -->
-                        <!-- else
-                        { -->
-                            <h3 class="text-center">You Have No Job Requests Currently!</h3>
-                        <!-- } -->
-
-
-
-
-
-                    </div>
-
-
-                </div>
-
-                <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
-
-                    <div class="container">
-
-                        <!-- @if (Model.jobsHistory.Count != 0)
-                        { -->
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Provider Name</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Details</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    <!-- @foreach (var item in Model.jobsHistory)
-                                    {
-                                        var user = Model._mycontext.Users.Where(u => u.Id == item.SeekerId).FirstOrDefault();
-                                        var review = Model._mycontext.Reviews.Where(r => r.OrderId == item.Id).FirstOrDefault();
-                                        var userName = user.FirstName + user.LastName;
-                                        var dateInfo = item.OrderCreatedDate + " - " + item.OrderCompletedDate; -->
-
-
-                                        <tr>
-                                            <th scope="row">user.FirstName user.LastName</th>
-                                            <td>user.Address</td>
-                                            <td>
-                                                <p>From: dateInfo</p>
-                                                <p>Phone No: user.PhoneNo</p>
-                                                <p>Total Hours: String.Format("{0:0.00}", item.SavedTime) &nbsp; &nbsp; Total Price: $@String.Format("{0:0.00}", (item.SavedTime * (double)Model.loggedProviderPHW))</p>
-                                                <!-- @if (review != null)
-                                                { -->
-                                                    <p>Rating: review.Rating <i class="fa-fas-star"></i></p>
-                                                    <!-- @if (review.Comment == null)
-                                                    {
-                                                        continue;
-                                                    } -->
-                                                    <!-- else
-                                                    { -->
-                                                        <p>Review: review.Comment</p>
-                                                    <!-- }
-                                                } -->
-                                            </td>
-                                        </tr>
-                                    <!-- } -->
-
-                                </tbody>
-                            </table>
-
-
-
-
-
-
-<!-- 
-                        }
-                        else
-                        { -->
-                            <h3 class="text-center">You Have No History!</h3>
-                        <!-- } -->
-
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<Footer />
 </div>
 </template>
 
 <script>
+import JobsDataTable from '../components/JobsDataTable.vue'
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
 export default {
   name: 'Jobs',
   props: {
    
   },
   components: {
-   
+      Header,
+      Footer,
+   JobsDataTable,
   },
   data() {
+    return {
+      id: parseInt(sessionStorage.getItem('ProvID')),
+      jobs:[],
+    }
+  },
+ methods:{
+      async fetchJobs(provId) {
+      const res = await fetch(`http://localhost:51044/delalo/jobs/${provId}`)
+
+      const data = await res.json()
+
+      return data
+    },
+    
+    
+
+  },
+    
+    async created() {
+    sessionStorage.setItem('ProvID', 3)
+    const res= await this.fetchJobs(this.id);
+   
+    if (res.length !==0){
+        this.jobs=res;
+       
+    }
+   
     
   },
-  methods: {
-  }
 }
+
 </script>
 
 

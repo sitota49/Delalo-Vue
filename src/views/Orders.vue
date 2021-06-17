@@ -1,246 +1,85 @@
 <template>
+
     <div>
+        <Header />
 <br>
 <br>
 
 <br>
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-2">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+<OrdersDataTable  :ordersAccepted="ordersAccepted" :ordersPending="ordersPending" :ordersHistory="ordersHistory"   />
 
-                <a class="nav-link active" id="v-pills-active-tab" data-toggle="pill" href="#v-pills-active" role="tab" aria-controls="pills-active" aria-selected="true">Active</a>
-                <a class="nav-link" id="v-pills-pending-tab" data-toggle="pill" href="#v-pills-pending" role="tab" aria-controls="pills-pending" aria-selected="false">Pending</a>
-                <a class="nav-link" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="pills-history" aria-selected="false">History</a>
-            </div>
-        </div>
-        <div class="col-10">
-            <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-active" role="tabpanel" aria-labelledby="pills-active-tab">
-                    <div class="container">
-
-                        <!-- @if (Model.ordersAccepted.Count != 0)
-                        { -->
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Provider Name</th>
-                                        <th scope="col">Details</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- @foreach (var item in Model.ordersAccepted) -->
-                                    <!-- { -->
-                                        <!-- var provider = Model._mycontext.Users.Where(p => p.Id == item.UserId).SingleOrDefault();
-                                        var whatever = "Order Completed Succesfully! Please pay $" + @String.Format("{0:0.00}", (item.SavedTime * (double)item.PerHourWage)) + "to" + provider.FirstName + provider.LastName + "in cash \n Thank You!"; -->
-                                        <tr>
-                                            <th scope="row">provider.FirstName provider.LastName</th>
-                                            <td>
-                                                <p>Service: item.Category</p>
-                                                <p>Phone number: provider.PhoneNo</p>
-                                                <p>Price per hour: $item.PerHourWage</p>
-                                                <p>Hours Worked: String.Format("{0:0.00}", item.SavedTime)</p>
-                                                <p>Current Total: $String.Format("{0:0.00}", (item.SavedTime * (double)item.PerHourWage))</p>
-                                            </td>
-                                            <td>
-
-                                                <!-- @if (item.Status == "accepted")
-                                                { -->
-                                                    <form method="post">
-                                                        <button asp-route-orderId="@item.Id" asp-page-handler="startTime" class="btn btn-primary">Start Time</button>
-                                                        <button asp-route-orderId="@item.Id" asp-page-handler="complete" class="btn btn-success">Complete</button>
-                                                    </form>
-                                                <!-- }
-                                                else if (item.Status == "acceptedstarted")
-                                                { -->
-                                                    <form method="post">
-                                                        <button asp-route-orderId="@item.Id" asp-page-handler="pauseTime" class="btn btn-danger">Pause Time</button>
-                                                    </form>
-                                                <!-- }
-                                                else if (item.Status == "acceptedfailed")
-                                                { -->
-                                                    <!-- <form method="post">
-                                                        <p>Unique code verification failed!</p>
-                                                        <button asp-route-orderId="@item.Id" asp-page-handler="tryAgain" class="btn btn-danger">Try Again</button>
-                                                    </form> -->
-                                                <!-- }
-                                                else if (item.Status == "acceptedreviewing")
-                                                { -->
-
-                                                    <form method="post">
-                                                        <div class="form-group">
-                                                            <input asp-for="reviewOrder.UniqueCode" min="0" type="number" class="form-control" id="exampleFormControlInput1" placeholder="Unique Code" required>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <textarea asp-for="reviewOrder.Comment" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Your Review"></textarea>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="formControlRange">Rate</label>
-                                                            <input asp-for="reviewOrder.Rating" type="range" class="custom-range" id="formControlRange" min="0" max="5" step="1" required>
-                                                        </div>
-
-                                                        <button asp-route-orderId="@item.Id" asp-page-handler="finish" type="submit" class="btn btn-primary">Finish</button>
-                                                    </form>
-                                                <!-- } -->
-                                            </td>
-                                        </tr>
-                                    <!-- } -->
-                                </tbody>
-                            </table>
-
-
-
-<!-- 
-                        }
-                        else
-                        { -->
-                            <h3 class="text-center">You Have No Active Orders Currently!</h3>
-                        <!-- } -->
-
-
-
-
-
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="v-pills-pending" role="tabpanel" aria-labelledby="pills-pending-tab">
-
-                    <div class="container">
-<!-- 
-                        @if (Model.ordersList.Count != 0)
-                        { -->
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Provider Name</th>
-                                        <th scope="col">Service</th>
-                                        <th scope="col">Status</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-<!-- 
-                                    @foreach (var item in Model.ordersList)
-                                    {
-                                        var provider = Model._mycontext.Users.Where(p => p.Id == item.UserId).SingleOrDefault(); -->
-                                        <tr>
-                                            <th scope="row">provider.FirstName provider.LastName</th>
-                                            <td>item.Category</td>
-                                            <td>
-                                                <!-- @if (item.Status == "pending")
-                                                { -->
-                                                    <form method="post">
-                                                        <button asp-route-orderId="@item.Id" asp-page-handler="cancel" class="btn btn-danger">Cancel Order</button>
-                                                    </form>
-                                                <!-- }
-                                                else if (item.Status == "declined")
-                                                { -->
-                                                    <form method="post">
-                                                        <button asp-route-orderId="@item.Id" asp-route-categoryName="@item.Category" asp-page-handler="someOneElse" class="btn btn-primary">Hire Someone Else</button>
-                                                    </form>
-                                                <!-- } -->
-                                            </td>
-                                        </tr>
-                                    <!-- } -->
-
-                                </tbody>
-                            </table>
-                        <!-- }
-                        else
-                        { -->
-                            <h3 class="text-center">You Have No Pending Orders Currently!</h3>
-                        <!-- } -->
-
-                    </div>
-
-                </div>
-                <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="pills-history-tab">
-                    <div class="container">
-
-                        <!-- @if (Model.ordersHistory.Count != 0)
-                        { -->
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th scope="col">Provider Name</th>
-                                        <th scope="col">Service</th>
-                                        <th scope="col">Details</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    <!-- @foreach (var item in Model.ordersHistory)
-                                    {
-                                        var provider = Model._mycontext.Users.Where(p => p.Id == item.UserId).FirstOrDefault();
-                                        var review = Model._mycontext.Reviews.Where(r => r.OrderId == item.Id).FirstOrDefault();
-                                        var providerName = provider.FirstName + provider.LastName;
-                                        var dateInfo = item.OrderCreatedDate.ToString() + " - " + item.OrderCompletedDate.ToString(); -->
-
-
-                                        <tr>
-                                            <th scope="row">provider.FirstName provider.LastName</th>
-                                            <td>item.Category</td>
-                                            <td>
-                                                <p>From: dateInfo</p>
-                                                <p>Phone No: provider.PhoneNo </p>
-                                                <p>Total Hours: String.Format("{0:0.00}", item.SavedTime) &nbsp;&nbsp; Total Price: $String.Format("{0:0.00}", (item.SavedTime * (double)item.PerHourWage))</p>
-                                                <!-- @if (review != null)
-                                                { -->
-                                                    <p>Rating: review.Rating <i class="fa-fas-star"></i></p>
-                                                    <!-- @if (review.Comment == null)
-                                                    {
-                                                        continue;
-                                                    }
-                                                    else
-                                                    {
-                                                        <p>Review: @review.Comment</p>
-                                                    } -->
-                                                <!-- } -->
-                                            </td>
-                                        </tr>
-                                    <!-- } -->
-
-                                </tbody>
-                            </table>
-
-
-
-
-
-
-
-                        <!-- }
-                        else
-                        { -->
-                            <h3 class="text-center">You Have No History!</h3>
-                        <!-- } -->
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<Footer />
     </div>
 </template>
 
 <script>
+import OrdersDataTable from '../components/OrdersDataTable.vue'
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
+
 export default {
   name: 'Orders',
   props: {
    
   },
   components: {
+       Header,
+      Footer,
+    OrdersDataTable,
    
   },
   data() {
+    return {
+      id: parseInt(sessionStorage.getItem('UserID')),
+      orders:[],
+      ordersAccepted:[],
+      ordersPending:[],
+      ordersHistory:[],
+       
+
+    }
+  },
+
+  computed:{
+
+  },
+ methods:{
+      async fetchOrders(userId) {
+      const res = await fetch(`http://localhost:51044/delalo/userorders/${userId}`)
+
+      const data = await res.json()
+
+      return data
+    },
+
+    extractAcceptedOrders(orders){
+      this.ordersAccepted= orders.filter((order) => order.order.status === "accepted");
+    },
+    extractPendingOrders(orders){
+      this.ordersAccepted= orders.filter((order) => order.order.status === "pending");
+    },
+    extractHistoryOrders(orders){
+      this.ordersAccepted= orders.filter((order) => order.order.is_completed === true);
+    }
+    
+
+    
+
+  },
+    
+    async created() {
+    sessionStorage.setItem('UserID', 7)
+    const resOrders= await this.fetchOrders(this.id);
+
+        this.orders= resOrders.results;
+        this.extractAcceptedOrders(resOrders.results);
+        this.extractPendingOrders(resOrders.results);
+        this.extractHistoryOrders(resOrders.results);
+        
+        console.log(this.orders);
+        console.log(this.ordersAccepted);
     
   },
-  methods:{
-      
-    },
 }
 
 </script>

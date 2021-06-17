@@ -7,7 +7,7 @@
 
                     <li><a href="./AdminProvider">Providers</a></li>
                 
-                    <li><a href="./AdminOrder">Orders</a></li>
+                    <!-- <li><a href="./AdminOrder">Orders</a></li> -->
                   
                     <li><a href="./Logout">Logout</a></li>
                 </ul>

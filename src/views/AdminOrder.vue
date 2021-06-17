@@ -10,106 +10,8 @@
        
             <AdminSidebar />
 
-              <div class="col-sm-12 main" style="margin-top:10%;margin-left:2%;">
-                <div class="row">
-                    <div class="col-sm-12 main">
-                        <div class="row row1">
-                            <h3 class="page-header">Order List</h3>
-
-                            <div class="table-responsive">
-
-                                <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                    <thead>
-                                        <tr>
-
-                                            
-                                            <th>Provider Name</th>
-                                            <th>Seeker Name</th>
-                                            <th>Category</th>
-                                            <th>Created Date </th>
-                                            <th>Unique Code</th>
-                                            <th>Completed Date</th>
-
-                                            <th>Saved Time</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- @foreach (var item in Model.ordersList)
-                                        { -->
-                                           
-                                        <tr>
-                                            <!-- @foreach (var uid in Model.userProviders)
-                                            {
-                                                var userId = uid.Id;
-                                                if (item.ProviderId == userId && uid.Role == "provider")
-                                                { -->
-                                                    <td>
-                                                        <span>@Html.DisplayFor(modelItem => uid.FirstName)</span>
-                                                        <span>@Html.DisplayFor(modelItem => uid.LastName)</span>
-                                                    </td>
-                                                <!-- }
-                                            }
-                                            @foreach (var uid in Model.userProviders)
-                                            {
-                                                var userId = uid.Id;
-                                                if (item.SeekerId == userId && uid.Role == "user")
-                                                { -->
-                                                    <td>
-                                                        <span>@Html.DisplayFor(modelItem => uid.FirstName)</span>
-                                                        <span>@Html.DisplayFor(modelItem => uid.LastName)</span>
-                                                    </td>
-
-                                                <!-- }
-                                            }
-                                            @foreach (var uid in Model.providerList)
-                                            {
-                                                var userId = uid.Id;
-                                                if (item.ProviderId == userId)
-                                                { -->
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => uid.Category)
-
-                                                    </td>
-                                                <!-- }
-                                            }
-                                            @if (item.OrderCompletedDate == null)
-                                            { -->
-                                                <td>-</td>
-                                            <!-- }
-                                            @if (item.OrderCompletedDate != null)
-                                            { -->
-                                                <td>@Html.DisplayFor(modelItem => item.OrderCreatedDate)</td>
-                                            <!-- } -->
-
-
-
-                                            <td>@Html.DisplayFor(modelItem => item.UniqueCode)</td>
-                                            <!-- @if (item.OrderCompletedDate == null)
-                                            { -->
-                                                <td>-</td>
-                                            <!-- }
-                                            @if (item.OrderCompletedDate != null)
-                                            { -->
-                                                <td>@Html.DisplayFor(modelItem => item.OrderCompletedDate)</td>
-                                            <!-- } -->
-
-                                           
-                                            <td>@Html.DisplayFor(modelItem => item.SavedTime)</td>
-
-
-                                        </tr>
-<!-- 
-                                        } -->
-
-                                    </tbody>
-
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+             <AdminOrdersDataTable :adminOrders="adminOrders"  />
+             
     </div>
    </div>
  
@@ -120,6 +22,7 @@
 
 import AdminHeader from '../components/AdminHeader.vue'
 import AdminSidebar from '../components/AdminSidebar.vue'
+import AdminOrdersDataTable from '../components/AdminOrdersDataTable.vue'
 
 export default {
   name: 'AdminOrder',
@@ -128,15 +31,42 @@ export default {
   },
   components: { 
       AdminHeader,
-      AdminSidebar
+      AdminSidebar,
+      AdminOrdersDataTable
     
    },
-  data() {
+ data() {
+     return {
+      adminOrders:[],
+    }
+  },
+  methods:{
+      async fetchOrders() {
+      const res = await fetch('http://localhost:51044/delalo/orders')
+
+      const data = await res.json()
+
+      return data
+    },
+     
+     
+
+  },
+    
+    async created() {
+    const res= await this.fetchOrders();
+    if (res.results.length !==0){
+        this.adminOrders=  res.results;
+    }
+
+    console.log(this.adminOrders);
+    
+
+   
     
   },
-  methods: {
-  }
 }
+
 </script>
 
 <style scoped>
