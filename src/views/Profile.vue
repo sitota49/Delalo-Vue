@@ -2,7 +2,7 @@
     
 <div class="dashboard-content-container" data-simplebar>
 
-    <div class="dashboard-content-inner">
+    <div class="dashboard-content-inner" >
 
 
         <div class="dashboard-headline">
@@ -24,16 +24,16 @@
                             <!-- Headline -->
                             <div class="headline">
                                 <h3><i class="icon-material-outline-account-circle"></i> My Account</h3>
-
+                                    <h1>{{user.firstname}}</h1>
                                 <div class="content with-padding padding-bottom-0">
 
                                     <div class="row">
 
-                                        <div class="col-auto">
+                                        <div class="col-auto" >
                                             <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar" style="border-radius: 50%">
                                                 <img class="profile-pic" src="" alt="" style="border-radius: 50%" />
                                                 <div class="upload-button"></div>
-                                                <input asp-for="user.Image" class="file-upload" type="file" accept="image/*" />
+                                                <input class="file-upload" type="file" accept="image/*" />
                                             </div>
                                         </div>
 
@@ -41,40 +41,40 @@
                                             <div class="row">
 
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field">
-                                                        <label asp-for="user.FirstName">First Name</label>
-                                                        <!--<h5 asp-for="User.">First Name</h5>-->
-                                                        <input asp-for="@Model.user.FirstName" type="text" class="with-border" value="" placeholder= item.FirstName)>
+                                                    <div class="submit-field" >
+                                                        <label>First Name</label>
+                                                        <!-- <h5 >{{user.firstname}}</h5> -->
+                                                        <input type="text" class="with-border" value="" placeholder= {{user.firstname}}>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field">
-                                                        <label asp-for="user.LastName">Last Name</label>
+                                                    <div class="submit-field" >
+                                                        <label>Last Name</label>
 
-                                                        <input asp-for="@Model.user.LastName" type="text" class="with-border" value="" placeholder=item.LastName)>
+                                                        <input type="text" class="with-border" value="" placeholder={{user.lastname}}>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xl-6">
                                                     <!-- Account Type -->
-                                                    <div class="submit-field">
-                                                        <label asp-for="user.PhoneNo">PhoneNo</label>
-                                                        <input asp-for="@Model.user.PhoneNo" type="text" class="with-border" value="" placeholder=item.PhoneNo)/>
+                                                    <div class="submit-field" >
+                                                        <label >PhoneNo</label>
+                                                        <input type="text" class="with-border" value="" placeholder={{user.phone}}>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field">
-                                                        <label asp-for="user.Email">Email</label>
+                                                    <div class="submit-field" >
+                                                        <label >Email</label>
 
-                                                        <input asp-for="@Model.user.Email" type="email"  class="with-border" />
+                                                        <input type="email"  class="with-border" placeholder={{user.email}}>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field">
-                                                        <label asp-for="user.Address"></label>
-                                                        <select asp-for="user.Address" class="form-control" title="Select Job Type" data-live-search="true" placeholder= item.Address)>
+                                                    <div class="submit-field" >
+                                                        <label >Address</label>
+                                                        <select class="form-control" title="Select Job Type" data-live-search="true" placeholder={{user.address}})>
 
                                                             <option value="Addis Ababa">Addis Ababa</option>
                                                             <option value="Bahir Dar">Bahir Dar</option>
@@ -110,16 +110,16 @@
 
 
                                         <div class="col-xl-4">
-                                            <div class="submit-field">
+                                            <div class="submit-field" >
                                                 <h5>Password</h5>
-                                                <input asp-for="userdetails.Password" type="password" class="with-border">
+                                                <input type="password" class="with-border">
                                             </div>
                                         </div>
 
                                         <div class="col-xl-4">
                                             <div class="submit-field">
                                                 <h5>Confirm Password</h5>
-                                                <input asp-for="@Model.user.Password" type="password" class="with-border">
+                                                <input type="password" class="with-border">
                                             </div>
                                         </div>
                                     </div>
@@ -162,13 +162,33 @@ export default {
    
   },
   data() {
-    return {
-    users:[],
+       return {
+        id: this.$route.params.id,
+        user: null
+   
 }
+},
     
-  },
+  
   methods: {
-  }
+    async fetchUser(id) {
+      const res =  await fetch(`http://localhost:51044/delalo/users/${id}`)
+
+      const data = await res.json()
+
+      return data
+  },
+  },
+    async created() {
+    const res= await this.fetchUser(this.id);
+   
+    if(res){
+
+        this.user = res;
+    }
+}
+
+
 }
 </script>
 

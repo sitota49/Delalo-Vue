@@ -14,7 +14,7 @@
                                     <input name="searchString" type="text" id="form1" class="form-control" placeholder="Search services here..." />
 
                                 </div>
-                                <button type="submit" class="btn btnsearch" asp-page="/services">
+                                <button type="submit" class="btn btnsearch">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>

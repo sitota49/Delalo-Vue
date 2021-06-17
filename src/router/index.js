@@ -18,6 +18,8 @@ import Profile from '../views/Profile'
 import Orders from '../views/Orders'
 import Jobs from '../views/Jobs'
 
+import Logout from '../views/Logout'
+
 import Services from '../views/Services'
 import EachService from '../views/EachService'
 import ProviderList from '../views/ProviderList'
@@ -45,6 +47,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout,
   },
   {
     path: '/register',
@@ -82,12 +89,12 @@ const routes = [
     component: Errors,
   },
   {
-    path: '/userProfile',
+    path: '/userProfile/:id',
     name: 'UserProfile',
     component: UserProfile,
   },
   {
-    path: '/profile',
+    path: '/profile/:id',
     name: 'Profile',
     component: Profile,
   },
@@ -146,7 +153,8 @@ const routes = [
     name: 'AdminProvider',
     component: AdminProvider,
   },
-  {
+ 
+    {
     path: '/DeleteCategory/:id',
     name: 'DeleteCategory',
     component: DeleteCategory,

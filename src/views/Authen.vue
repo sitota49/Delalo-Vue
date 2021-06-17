@@ -6,7 +6,7 @@
                     <div class="card-body" style="padding:4px 2px 2px 7px;">
                         <div class="col-md-4">
                             <a asp-page="/Index" asp-route-providerId="@Model.providerId">
-                            <img src="../assets/logo.jpg" style="width:300px; height:200px; margin-top:15%; padding:10%;"></a>
+                            <img src="../assets/logo2.jpg" style="width:300px; height:200px; margin-top:15%; padding:10%;"></a>
                             
                         </div>
                         <div class="col-md-4" style="padding:2px 2px 2px 70px;">

@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <p class="card-title text-md-center text-xl-left">Total users</p>
                         <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">@Model.userProviders.Count</h3>
+                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{users.length}}</h3>
                             <i class="ti-calendar icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                         </div>
                         <p class="mb-0 mt-2 text-danger"></p>
@@ -32,39 +32,20 @@
                     <div class="card-body">
                         <p class="card-title text-md-center text-xl-left">Total Number of providers</p>
                         <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">@Model.providerList.Count</h3>
+                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{providers.length}}</h3>
                             <i class="ti-user icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                         </div>
                         <p class="mb-0 mt-2 text-danger"> </p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 grid-margin ">
-                <div class="card" style="width: 22rem;">
-                    <div class="card-body">
-                        <p class="card-title text-md-center text-xl-left">Total Number of seekers </p>
-                        <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                            <!-- @{
-                                int sum = 0;
-                            }
-                            @foreach (var item in Model.userProviders)
-                            {
-                                if (item.Role == "user")
-                                { sum += 1; }
-                            } -->
-                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">@sum</h3>
-                            <i class="ti-agenda icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
-                        </div>
-                        <p class="mb-0 mt-2 text-success"></p>
-                    </div>
-                </div>
-            </div>
+           
             <div class="col-md-3 grid-margin ">
                 <div class="card" style="width: 22rem;">
                     <div class="card-body">
                         <p class="card-title text-md-center text-xl-left">Number of Categories</p>
                         <div class="d-flex flex-wrap justify-content-between justify-content-md-center justify-content-xl-between align-items-center">
-                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">@Model.categoryList.Count</h3>
+                            <h3 class="mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{categories.length}}</h3>
                             <i class="ti-layers-alt icon-md text-muted mb-0 mb-md-3 mb-xl-0"></i>
                         </div>
                         <p class="mb-0 mt-2 text-success"></p>
@@ -141,12 +122,34 @@
 
                                             <td>
 
-                                                <p class="mb-1 text-dark font-weight-medium">@item.Key</p><small class="font-weight-medium"></small>
+                                                <p class="mb-1 text-dark font-weight-medium">Delivery</p><small class="font-weight-medium"></small>
                                             </td>
 
 
-                                            <td class="font-weight-medium">$@item.Value[0]</td>
-                                            <td class=" font-weight-medium">$@item.Value[1] </td>
+                                            <td class="font-weight-medium">$59</td>
+                                            <td class=" font-weight-medium">$26 </td>
+                                        </tr>
+                                         <tr>
+
+                                            <td>
+
+                                                <p class="mb-1 text-dark font-weight-medium">Cleaning</p><small class="font-weight-medium"></small>
+                                            </td>
+
+
+                                            <td class="font-weight-medium">$249</td>
+                                            <td class=" font-weight-medium">$83 </td>
+                                        </tr>
+                                         <tr>
+
+                                            <td>
+
+                                                <p class="mb-1 text-dark font-weight-medium">Construction</p><small class="font-weight-medium"></small>
+                                            </td>
+
+
+                                            <td class="font-weight-medium">$158</td>
+                                            <td class=" font-weight-medium">$32 </td>
                                         </tr>
                                     <!-- } -->
 
@@ -182,11 +185,63 @@ export default {
       AdminSidebar
     
    },
-  data() {
+ data() {
+     return {
+      providers:[],
+      users:[],
+      categories:[]
+
+    }
+  },
+  methods:{
+      async fetchProviders() {
+      const res = await fetch('http://localhost:51044/delalo/providers')
+
+      const data = await res.json()
+
+      return data
+    },
+      async fetchUsers() {
+      const res = await fetch('http://localhost:51044/delalo/users')
+
+      const data = await res.json()
+
+      return data
+    },
+     async fetchCategories() {
+      const res = await fetch('http://localhost:51044/delalo/categories')
+
+      const data = await res.json()
+
+      return data
+    },
+     
+     
+
+  },
+    
+    async created() {
+    const resProviders= await this.fetchProviders();
+    if (resProviders.results.length !==0){
+        this.providers=resProviders.results;
+    }
+
+ const resUsers= await this.fetchUsers();
+ 
+    if (resUsers.length !==0){
+        this.users=resUsers;
+    }
+
+    const resCategories= await this.fetchCategories();
+ 
+    if (resCategories.length !==0){
+        this.categories=resCategories;
+    }
+
+    
+   
     
   },
-  methods: {
-  }
 }
 </script>
 

@@ -12,7 +12,7 @@
         <div class="row">
 
             <!-- Dashboard Box -->
-            <form method="post">
+            <form @submit="onSubmit">
                 <div class="col-xl-12" id="dashbord">
                     <div class="dashboard-box margin-top-0">
 
@@ -29,7 +29,7 @@
                                     <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
                                         <img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
                                         <div class="upload-button"></div>
-                                        <input asp-for="user.Image" class="file-upload" type="file" accept="image/*" />
+                                        <input  class="file-upload" type="file" accept="image/*" />
                                     </div>
                                 </div>
 
@@ -38,33 +38,33 @@
 
                                         <div class="col-xl-6">
                                             <div class="submit-field">
-                                                <label asp-for="user.FirstName">First Name</label>
+                                                <label >First Name</label>
                                                 <!--<h5 asp-for="User.">First Name</h5>-->
-                                                <input asp-for="user.FirstName" type="text" class="with-border" value=" " required>
+                                                <input  type="text" class="with-border"  v-model="firstname" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xl-6">
                                             <div class="submit-field">
-                                                <label asp-for="user.LastName">Last Name</label>
+                                                <label>Last Name</label>
                                                
-                                                <input asp-for="user.LastName" type="text" class="with-border" value=" " required>
+                                                <input type="text" class="with-border" v-model="lastname" required>
                                             </div>
                                         </div>
 
                                         <div class="col-xl-6">
                                             <!-- Account Type -->
                                             <div class="submit-field">
-                                                <label asp-for="user.PhoneNo">Phone number</label>
-                                                <input asp-for="user.PhoneNo" type="text" class="with-border" value="" required/>
+                                                <label >Phone number</label>
+                                                <input type="text" class="with-border" v-model="phone"  required/>
                                             </div>
                                         </div>
 
                                         <div class="col-xl-6">
                                             <div class="submit-field">
-                                                <label asp-for="user.Email">Email</label>
+                                                <label>Email</label>
                                                
-                                                <input asp-for="user.Email" type="text" class="with-border" value="" required/>
+                                                <input type="text" class="with-border" v-model="email" required/>
                                             </div>
                                         </div>
 
@@ -92,14 +92,14 @@
                                 <div class="col-xl-4">
                                     <div class="submit-field">
                                         <h5>Password</h5>
-                                        <input asp-for="user.Password" type="password" class="with-border" >
+                                        <input type="password" v-model="password_hash"  class="with-border" required/>
                                     </div>
                                 </div>
                                 
                                 <div class="col-xl-4">
                                     <div class="submit-field">
                                         <h5>Confirm Password</h5>
-                                        <input asp-for="user.ConfirmPassword" type="password" class="with-border" >
+                                        <input type="password" class="with-border" />
                                     </div>
                                 </div>
 
@@ -128,7 +128,7 @@
 
                                                         <!-- Slider -->
                                                         <div class="bidding-value margin-bottom-10">$<span id="biddingVal"></span></div>
-                                                        <input asp-for="provider.PerHourWage" class="bidding-slider" type="text" value="" data-slider-handle="custom" data-slider-currency="$" data-slider-min="5" data-slider-max="500" data-slider-value="0" data-slider-step="1" data-slider-tooltip="hide" />
+                                                        <input  class="bidding-slider" type="text" v-model="per_hour_wage" data-slider-handle="custom" data-slider-currency="$" data-slider-min="5" data-slider-max="500" data-slider-value="0" data-slider-step="1" data-slider-tooltip="hide" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -138,8 +138,8 @@
                                             <div class="col-xl-4">
                                                 <div class="submit-field">
                                                     <div class="upload-button"></div>
-                                                    <label asp-for="provider.Recommendation">Enter your recommendation letter link (Uploaded from google drive)</label>
-                                                    <input asp-for="provider.Recommendation" type="url" required />
+                                                    <label >Enter your recommendation letter link (Uploaded from google drive)</label>
+                                                    <input  type="url" v-model="recommendation" required />
                                                     <p><small>For more information on how to upload a file to google drive <a href="https://youtu.be/GQVGr_OM18Q" style="text-decoration: none;">click here</a></small></p>
                                                   
                                                     <!-- Attachments-->
@@ -153,11 +153,30 @@
                                     </li>
                                     <li>
                                         <div class="row">
+                                              <div class="col-xl-6">
+                                                <div class="submit-field">
+                                                    <h5>Choose a Category</h5>
+                                                    <select class=" form-control" v-model="category" title="search category" data-live-search="true" required>
+
+                                                    
+                                                        <option selected >Mechanic</option>
+                                                        <option >Delivery</option>
+                                                        <option >Electrician</option>
+                                                        <option >Cleaner</option>
+                                               
+
+                                                      
+
+                                                    </select>
+                                                </div>
+                                            </div> 
+
+                                        
                                             <div class="col-xl-6">
                                                 <div class="submit-field">
                                                     <h5>Area avaliable</h5>
-                                                    <select asp-for="user.Address"  class=" form-control"  title="city residence" data-live-search="true" required>
-                                                        <option >Addis Ababa</option>
+                                                    <select class="form-control"  title="city residence" v-model="address"  data-live-search="true" required>
+                                                        <option selected >Addis Ababa</option>
                                                         <option >Dire Dawa</option>
                                                         <option >Bahir Dar</option>
                                                         <option >Hawassa</option>
@@ -166,32 +185,11 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-xl-6">
-                                                <div class="submit-field">
-                                                    <h5>Choose a Category</h5>
-                                                    <select asp-for="provider.Category" class=" form-control" title="search category" data-live-search="true" required>
-
-                                                        <!-- @for (int i = 0; i < Model.categorylist.Count; i++)
-                                                        {
-                                                            if (i == 0)
-                                                            { -->
-                                                                <option selected>@Model.categorylist[i].Name</option>
-                                                                continue;
-                                                            <!-- } -->
-
-                                                            <option>@Model.categorylist[i].Name</option>
-                                                        <!-- } -->
-
-                                                      
-
-                                                    </select>
-                                                </div>
-                                            </div>
-
+                                      
                                             <div class="col-xl-12">
                                                 <div class="submit-field">
                                                     <h5>Description about what you do...</h5>
-                                                    <textarea asp-for="provider.Description" cols="30" rows="5" class="with-border" placeholder="description..."></textarea>
+                                                    <textarea cols="30" rows="5" class="with-border" placeholder="description..."></textarea>
                                                 </div>
                                             </div>
 
@@ -225,106 +223,143 @@
 
 // <script>
 
-// export default {
-//   name: 'BecomeAProvider',
-//   props: {
+export default {
+  name: 'BecomeAProvider',
+  props: {
    
-//   },
-//   components: {
+  },
+  components: {
    
-//   },
-//   data() {
-//       return{
-        
-//       }
-//   },
-//    methods: {
-//     async addUser(user) {
+  },
+  data() {
+      return{
+           firstname: '',
+            lastname: '',
+            email: '',
+            address: '',
+            per_hour_wage: '',
+            recommendation: '',
+            phone: '',
+            password: '',
+            image: '',
+            average_rating : 0,
+            jobs_done : 0,
+            description : "Motivated",
+            role: 'user'
+      }
+  },
+   methods: {
+    async addProvider(provider) {
 
-//         const res = await fetch('http://localhost:51044/delalo/users', {
-//         method: 'POST',
-//         mode: 'cors',
-//         headers: {
-//           'Content-type': 'application/json'
-//         },
-//         body:JSON.stringify(user)
-//       })
-//     console.log("getting here")
-//     console.log(res);
-//     console.log(await res.json())
-//     const data = "" 
-//     console.log("D",data);
+        const res = await fetch('http://localhost:51044/delalo/providers', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body:JSON.stringify(provider)
+      })
+    console.log("getting here")
+    console.log(res);
+    console.log(await res.json())
+    const data = "" 
+    console.log("D",data);
       
-//       res.status === 200
-//           ? window.location.href ='../Services'
-//           : alert('You are a provider now')
+      res.status === 200
+          ? window.location.href ='../Services'
+          : alert('Error')
    
 
      
     
 
-//     },
+    },
 
-//     onSubmit(e) {
-//       e.preventDefault()
+    onSubmit(e) {
+      e.preventDefault()
 
-//       if (!this.firstname) {
-//         alert('Input firstname')
-//         return
-//       }
+      if (!this.firstname) {
+        alert('Input firstname')
+        return
+      }
       
-//       if (!this.lastname) {
-//         alert('Input lastname')
-//         return
-//       }
-//          if (!this.password_hash) {
-//         alert('Input password')
-//         return
-//       }
-//          if (!this.phone) {
-//         alert('Input phone')
-//         return
-//       }
-//          if (!this.email) {
-//         alert('Input email')
-//         return
-//       }
+      if (!this.lastname) {
+        alert('Input lastname')
+        return
+      }
+         if (!this.password_hash) {
+        alert('Input password')
+        return
+      }
+         if (!this.phone) {
+        alert('Input phone')
+        return
+      }
+         if (!this.email) {
+        alert('Input email')
+        return
+      }
+         if (!this.address) {
+        alert('Input address')
+        return
+      }
       
-//          if (!this.address) {
-//         alert('Input address')
-//         return
-//       }
+       
+        if (!this.category) {
+        alert('Input category')
+        return
+      }
+        if (!this.recommendation) {
+        alert('Input recommendation')
+        return
+      }
+        if (!this.per_hour_wage) {
+        alert('Input per_hour_wage')
+        return
+      }
 
-//       const newUser = {
+      const newProvider = {
         
-//         "firstname": this.firstname,
-//         "lastname": this.lastname,
-//         "email": this.email,
-//         "phone": this.phone,
-//         "password_hash": this.password_hash,
-//         "address" : this.address,
-//         "image" : this.image
-//       }
+        "firstname": this.firstname,
+        "lastname": this.lastname,
+        "email": this.email,
+        "phone": this.phone,
+        "password": this.password_hash,
+        "address" :this.address,
+        "image" : this.image,
+        "per_hour_wage" : this.per_hour_wage,
+        "category" : this.category,
+        "recommendation" : this.recommendation,
+        "average_rating": this.average_rating ,
+        "jobs_done" : this.jobs_done,
+        "description": this.description 
+      }
 
-//      this.addProvider(newProvider);
+     this.addProvider(newProvider);
 
-//       this.firstname = ''
-//       this.lastname = ''
-//       this.email = ''
-//       this.phone = ''
-//       this.password_hash = ''
-//       this.address = ''
-//       this.image = ''
+      this.firstname = ''
+      this.lastname = ''
+      this.email = ''
+      this.phone = ''
+      this.password_hash = ''
+      this.address = ''
+      this.image = ''
+      this.per_hour_wage = ''
+      this.category = ''
+      this.recommendation = ''
+      this.average_rating = 0
+      this.jobs_done = 0
+      this.description = "Motivated"
 
-//     },
+    },
 
    
     
-//   }
-// };
+  }
+};
 
 
-// </script>
+</script>
 <style>
 
     @import '../assets/styleAuth.css';
