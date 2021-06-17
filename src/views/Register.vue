@@ -2,15 +2,15 @@
 
 
  <div class="container" style="margin-top:7%;margin-left:15%;">
-     <div v-for="provider in providers" :key = "provider.id"></div>
-     <h1>{{provider.results.id}}</h1>
+     <div ></div>
+     <h1></h1>
         <div class="row">
             <div class="col-md-10">
                 <div class="card" style="border-radius:5px; height:100%; padding-bottom:20px;">
                     <div class="card-body" style="padding:4px 2px 2px 7px;">
                         <div class="col-md-4">
                             <a href="/Index">
-                            <img src="../assets/logo.jpg" style="width:300px; height:200px; margin-top:15%; padding:10%;"></a>
+                            <img src="../assets/logo2.jpg" style="width:300px; height:200px; margin-top:15%; padding:10%;"></a>
                             
                         </div>
                         <div class="col-md-4" style="padding:2px 2px 2px 70px;">
@@ -78,21 +78,20 @@
 
 <script>
 
-// export default {
-//   data: () => ({
-//     user: {
-//       name: '',
-//       email: '',
-//       password: ''
-//     }
-//   }),
-//   methods: {
-//     async onSubmit() {
-//       const { data } = await this.$http.post('auth/register', this.user);
-//       this.$router.push({ name: 'Login' });
-//     }
-//   }
-// };
+export default {
+  name: 'Register',
+  props: {
+   
+  },
+  components: {
+   
+  },
+  data() {
+    
+  },
+  methods: {
+  }
+};
 
 
 </script>

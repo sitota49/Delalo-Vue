@@ -13,6 +13,7 @@ import UserProfile from '../views/userProfile'
 import Profile from '../views/Profile'
 import Orders from '../views/Orders'
 import Jobs from '../views/Jobs'
+import BecomeAProvider from '../views/BecomeAProvider'
 
 import Services from '../views/Services'
 import EachService from '../views/EachService'
@@ -73,7 +74,7 @@ const routes = [
     component: Errors,
   },
   {
-    path: '/userProfile',
+    path: '/userProfile/:id',
     name: 'UserProfile',
     component: UserProfile,
   },
@@ -138,6 +139,9 @@ const routes = [
     component: AdminProvider,
   },
   {
+    path: '/becomeAProvider',
+    name: 'BecomeAProvider',
+    component: BecomeAProvider,
     path: '/DeleteCategory/:id',
     name: 'DeleteCategory',
     component: DeleteCategory,

@@ -4,6 +4,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
             <a class="navbar-brand logo" href="/">
+                <img src="../assets/logo2.jpg" style="height:60px" />
                 <!-- <img src="../assets/logo.png" style="height:60px" /> -->
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
