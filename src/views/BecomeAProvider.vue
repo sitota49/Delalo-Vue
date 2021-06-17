@@ -92,14 +92,14 @@
                                 <div class="col-xl-4">
                                     <div class="submit-field">
                                         <h5>Password</h5>
-                                        <input type="password" v-model="password_hash" class="with-border" >
+                                        <input type="password" v-model="password_hash"  class="with-border" required/>
                                     </div>
                                 </div>
                                 
                                 <div class="col-xl-4">
                                     <div class="submit-field">
                                         <h5>Confirm Password</h5>
-                                        <input type="password"  class="with-border" >
+                                        <input type="password" class="with-border" />
                                     </div>
                                 </div>
 
@@ -128,7 +128,7 @@
 
                                                         <!-- Slider -->
                                                         <div class="bidding-value margin-bottom-10">$<span id="biddingVal"></span></div>
-                                                        <input  class="bidding-slider" type="text" value="" data-slider-handle="custom" data-slider-currency="$" data-slider-min="5" data-slider-max="500" data-slider-value="0" data-slider-step="1" data-slider-tooltip="hide" />
+                                                        <input  class="bidding-slider" type="text" v-model="per_hour_wage" data-slider-handle="custom" data-slider-currency="$" data-slider-min="5" data-slider-max="500" data-slider-value="0" data-slider-step="1" data-slider-tooltip="hide" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -158,28 +158,24 @@
                                                     <h5>Choose a Category</h5>
                                                     <select class=" form-control" v-model="category" title="search category" data-live-search="true" required>
 
-                                                        <!-- @for (int i = 0; i < Model.categorylist.Count; i++)
-                                                        {
-                                                            if (i == 0)
-                                                            { -->
-                                                                <option selected>@Model.categorylist[i].Name</option>
-                                                                continue;
-                                                            <!-- } -->
-
-                                                            <option>@Model.categorylist[i].Name</option>
-                                                        <!-- } -->
+                                                    
+                                                        <option selected >Mechanic</option>
+                                                        <option >Delivery</option>
+                                                        <option >Electrician</option>
+                                                        <option >Cleaner</option>
+                                               
 
                                                       
 
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> 
 
                                         
                                             <div class="col-xl-6">
                                                 <div class="submit-field">
                                                     <h5>Area avaliable</h5>
-                                                    <select class="form-control" v-model="address" title="city residence"  data-live-search="true" required>
+                                                    <select class="form-control"  title="city residence" v-model="address"  data-live-search="true" required>
                                                         <option selected >Addis Ababa</option>
                                                         <option >Dire Dawa</option>
                                                         <option >Bahir Dar</option>
@@ -240,12 +236,15 @@ export default {
            firstname: '',
             lastname: '',
             email: '',
-            password_hash: '',
             address: '',
             per_hour_wage: '',
             recommendation: '',
             phone: '',
+            password: '',
             image: '',
+            average_rating : 0,
+            jobs_done : 0,
+            description : "Motivated",
             role: 'user'
       }
   },
@@ -300,21 +299,22 @@ export default {
         alert('Input email')
         return
       }
-      
          if (!this.address) {
         alert('Input address')
         return
       }
+      
+       
         if (!this.category) {
-        alert('Input address')
+        alert('Input category')
         return
       }
         if (!this.recommendation) {
-        alert('Input address')
+        alert('Input recommendation')
         return
       }
         if (!this.per_hour_wage) {
-        alert('Input address')
+        alert('Input per_hour_wage')
         return
       }
 
@@ -324,12 +324,15 @@ export default {
         "lastname": this.lastname,
         "email": this.email,
         "phone": this.phone,
-        "password_hash": this.password_hash,
-        "address" : this.address,
+        "password": this.password_hash,
+        "address" :this.address,
         "image" : this.image,
         "per_hour_wage" : this.per_hour_wage,
         "category" : this.category,
-        "recommendation" : this.recommendation
+        "recommendation" : this.recommendation,
+        "average_rating": this.average_rating ,
+        "jobs_done" : this.jobs_done,
+        "description": this.description 
       }
 
      this.addProvider(newProvider);
@@ -344,6 +347,9 @@ export default {
       this.per_hour_wage = ''
       this.category = ''
       this.recommendation = ''
+      this.average_rating = 0
+      this.jobs_done = 0
+      this.description = "Motivated"
 
     },
 

@@ -42,7 +42,7 @@
             <i class="fas fa-user-alt"></i>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>  <a class="dropdown-item" href= "../views/userProfile" >Profile</a></li>
+            <li>  <a class="dropdown-item" href= "userProfile/id?"  >Profile</a></li>
                  <!-- @if (HttpContextAccessor.HttpContext.Session.GetString("role") == "provider")
                                                     { -->
             <li> <a class="dropdown-item" href="/Jobs">Jobs</a></li>
@@ -68,8 +68,41 @@
 
 <script>
 export default {
+  name: 'Header',
+  props: {
+   
+  },
+  components: {
+   
+  },
+data() {
+    return {
+        id: this.$route.params.id,
+        user:null
+   
+}
+  },
+  methods: {
+  async fetchUser(id) {
+      const res = await fetch(`http://localhost:51044/delalo/users/${id}`)
+
+      const data = await res.json()
+
+      return data
+    }
+  },
+    async created() {
+    const res= await this.fetchUser(this.id);
+   
+    if(res){
+
+        this.user = res;
+    }
+    }
+   
     
 }
+
 </script>
 <style scoped>
 
