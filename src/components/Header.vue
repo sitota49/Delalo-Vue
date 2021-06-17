@@ -27,7 +27,7 @@
                     @{ if (HttpContextAccessor.HttpContext.Session.GetString("email") == null)
                         { -->
                             <li class="nav-item">
-                                <a class="nav-link links" href="/AuthOption" asp-route-providerId="0" style="color: #735798">Signup/Login</a>
+                                <a class="nav-link links" href="/Authen" asp-route-providerId="0" style="color: #735798">Signup/Login</a>
                             </li>
                             <li class="nav-item">
                                 <a class="btn btn-outline-secondary providerbtn" href="/BecomeaProvider">Become a Provider</a>
@@ -42,13 +42,13 @@
             <i class="fas fa-user-alt"></i>
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>  <a class="dropdown-item" href="/userProfile" >Profile</a></li>
+            <li>  <a class="dropdown-item" href= "userProfile/id?"  >Profile</a></li>
                  <!-- @if (HttpContextAccessor.HttpContext.Session.GetString("role") == "provider")
                                                     { -->
             <li> <a class="dropdown-item" href="/Jobs">Jobs</a></li>
          <!-- } -->
             <li><a class="dropdown-item" href="/Orders">Orders</a></li>
-             <li><a class="dropdown-item" href="/Logout" asp-for="/Logout">Logout</a></li>
+             <li><a class="dropdown-item" href="/Logout" >Logout</a></li>
           </ul>
         </li>
                     
@@ -68,8 +68,41 @@
 
 <script>
 export default {
+  name: 'Header',
+  props: {
+   
+  },
+  components: {
+   
+  },
+data() {
+    return {
+        id: this.$route.params.id,
+        user:null
+   
+}
+  },
+  methods: {
+  async fetchUser(id) {
+      const res = await fetch(`http://localhost:51044/delalo/users/${id}`)
+
+      const data = await res.json()
+
+      return data
+    }
+  },
+    async created() {
+    const res= await this.fetchUser(this.id);
+   
+    if(res){
+
+        this.user = res;
+    }
+    }
+   
     
 }
+
 </script>
 <style scoped>
 

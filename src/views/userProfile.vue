@@ -100,19 +100,17 @@
                                             <div class="col">
                                                 <div class="row">
 
-
-
                                                     <div class="col-xl-6">
                                                         <div class="submit-field" >
                                                             <h5>First Name</h5>
-                                                            <p>{{user.firstname}}</p>
+                                                            <p>{{user.user_info.firstname}}</p>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-xl-6">
                                                         <div class="submit-field" >
                                                             <h5>Last Name</h5>
-                                                            <p>{{user.lastname}}</p>
+                                                            <p>{{user.user_info.lastname}}</p>
                                                         </div>
                                                     </div>
 
@@ -122,7 +120,7 @@
                                                             <h5>Account Type</h5>
                                                             <div class="account-type">
                                                                 <div>
-                                                                    <button class="btn" style="margin-top:30px; background-color:#301934; color:#ffffff;">{{user.role}}</button>
+                                                                    <button class="btn" style="margin-top:30px; background-color:#301934; color:#ffffff;">{{user.user_info.role}}</button>
                                                                 </div>
 
 
@@ -133,7 +131,7 @@
                                                     <div class="col-xl-6">
                                                         <div class="submit-field" >
                                                             <h5>Email</h5>
-                                                            <p>{{user.email}}</p>
+                                                            <p>{{user.user_info.email}}</p>
                                                         </div>
                                                     </div>
 
@@ -146,7 +144,7 @@
                                                     <div class="col-xl-6">
                                                         <div class="submit-field" >
                                                             <h5>Phone Number</h5>
-                                                            <p>{{user.phone}}</p>
+                                                            <p>{{user.user_info.phone}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -165,7 +163,7 @@
                 </div>
 
                 <!-- Dashboard Box -->
-                <div class="col-xl-12" :key="user.id" v-if="user.id === 'provider.prov_info.user_id'">
+                <div class="col-xl-12" :key="user.user_info.id" v-if="user.user_info.role === 'provider'">
                     <div class="dashboard-box" >
 
                         <!-- Headline -->
@@ -195,7 +193,7 @@
                                                                     <span class="bidding-detail"><strong>Hourly rate</strong></span>
 
                                                                     <!-- Slider -->
-                                                                    <p>{{provider.prov_info.per_hour_wage}}</p>
+                                                                    <p>{{user.prov_info.per_hour_wage}}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -232,7 +230,7 @@
                                                         <div class="col-xl-6">
                                                             <div class="submit-field" >
                                                                 <h5>Category</h5>
-                                                                <p>{{provider.prov_info.category}} </p>
+                                                                <p>{{user.prov_info.category}} </p>
                                                             </div>
                                                         </div>
 
@@ -252,14 +250,14 @@
                                                         <div class="col-xl-6">
                                                             <div class="submit-field">
                                                                 <h5>Description</h5>
-                                                                <p> {{provider.prov_info.description}}</p>
+                                                                <p> {{user.prov_info.description}}</p>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-xl-6">
                                                             <div class="submit-field">
                                                                 <h5>Reviews</h5>
-                                                                <p>{{provider.prov_info.review}}</p>
+                                                                <p>{{user.prov_info.review}}</p>
                                                             </div>
                                                         </div>
 
@@ -269,13 +267,13 @@
                                                         <div class="col-xl-6">
                                                             <div class="submit-field">
                                                                 <h5>Jobs Done</h5>
-                                                                <p> {{provider.prov_info.jobs_done}}</p>
+                                                                <p> {{user.prov_info.jobs_done}}</p>
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-6">
                                                             <div class="submit-field">
                                                                 <h5>Average Rating</h5>
-                                                                <p> {{provider.prov_info.average_rating}}</p>
+                                                                <p> {{user.prov_info.average_rating}}</p>
                                                             </div>
                                                         </div>
 
@@ -296,9 +294,7 @@
 
                 <!-- Dashboard Box -->
                 <!-- Button -->
-                <div class="col-xl-12">
-                    <a  class="button ripple-effect big margin-top-30" style="color: white; margin-top:30px; background-color:#301934;">Update Profile</a>
-                </div>
+               
 
             </div>
             <!-- Row / End -->
