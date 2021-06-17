@@ -14,6 +14,7 @@ import Profile from '../views/Profile'
 import Orders from '../views/Orders'
 import Jobs from '../views/Jobs'
 import BecomeAProvider from '../views/BecomeAProvider'
+import Logout from '../views/Logout'
 
 import Services from '../views/Services'
 import EachService from '../views/EachService'
@@ -42,6 +43,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout,
   },
   {
     path: '/register',
@@ -79,7 +85,7 @@ const routes = [
     component: UserProfile,
   },
   {
-    path: '/profile',
+    path: '/profile/:id',
     name: 'Profile',
     component: Profile,
   },
@@ -142,6 +148,8 @@ const routes = [
     path: '/becomeAProvider',
     name: 'BecomeAProvider',
     component: BecomeAProvider,
+  },
+    {
     path: '/DeleteCategory/:id',
     name: 'DeleteCategory',
     component: DeleteCategory,

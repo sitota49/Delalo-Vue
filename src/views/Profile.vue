@@ -24,12 +24,12 @@
                             <!-- Headline -->
                             <div class="headline">
                                 <h3><i class="icon-material-outline-account-circle"></i> My Account</h3>
-
+                                    <h1>{{user.firstname}}</h1>
                                 <div class="content with-padding padding-bottom-0">
 
                                     <div class="row">
 
-                                        <div class="col-auto" :key="user.id" v-for="user in users">
+                                        <div class="col-auto" >
                                             <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar" style="border-radius: 50%">
                                                 <img class="profile-pic" src="" alt="" style="border-radius: 50%" />
                                                 <div class="upload-button"></div>
@@ -41,7 +41,7 @@
                                             <div class="row">
 
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field" :key="user.id" v-for="user in users">
+                                                    <div class="submit-field" >
                                                         <label>First Name</label>
                                                         <!-- <h5 >{{user.firstname}}</h5> -->
                                                         <input type="text" class="with-border" value="" placeholder= {{user.firstname}}>
@@ -49,7 +49,7 @@
                                                 </div>
 
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field" :key="user.id" v-for="user in users">
+                                                    <div class="submit-field" >
                                                         <label>Last Name</label>
 
                                                         <input type="text" class="with-border" value="" placeholder={{user.lastname}}>
@@ -58,23 +58,23 @@
 
                                                 <div class="col-xl-6">
                                                     <!-- Account Type -->
-                                                    <div class="submit-field" :key="user.id" v-for="user in users">
+                                                    <div class="submit-field" >
                                                         <label >PhoneNo</label>
-                                                        <input type="text" class="with-border" value="" placeholder={{user.phone}}/>
+                                                        <input type="text" class="with-border" value="" placeholder={{user.phone}}>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field" :key="user.id" v-for="user in users">
+                                                    <div class="submit-field" >
                                                         <label >Email</label>
 
-                                                        <input type="email"  class="with-border" placeholder={{user.email}}/>
+                                                        <input type="email"  class="with-border" placeholder={{user.email}}>
                                                     </div>
                                                 </div>
                                                 <div class="col-xl-6">
-                                                    <div class="submit-field" :key="user.id" v-for="user in users">
+                                                    <div class="submit-field" >
                                                         <label >Address</label>
-                                                        <select class="form-control" title="Select Job Type" data-live-search="true" placeholder= {{user.address}})>
+                                                        <select class="form-control" title="Select Job Type" data-live-search="true" placeholder={{user.address}})>
 
                                                             <option value="Addis Ababa">Addis Ababa</option>
                                                             <option value="Bahir Dar">Bahir Dar</option>
@@ -110,14 +110,14 @@
 
 
                                         <div class="col-xl-4">
-                                            <div class="submit-field" :key="user.id" v-for="user in users">
+                                            <div class="submit-field" >
                                                 <h5>Password</h5>
                                                 <input type="password" class="with-border">
                                             </div>
                                         </div>
 
                                         <div class="col-xl-4">
-                                            <div class="submit-field" :key="user.id" v-for="user in users">
+                                            <div class="submit-field">
                                                 <h5>Confirm Password</h5>
                                                 <input type="password" class="with-border">
                                             </div>
@@ -162,20 +162,33 @@ export default {
    
   },
   data() {
-    return {
-    users:[],
+       return {
+        id: this.$route.params.id,
+        user: null
+   
 }
+},
     
-  },
+  
   methods: {
-    async fetchUsers() {
-      const res = await fetch('http://localhost:51044/delalo/users')
+    async fetchUser(id) {
+      const res =  await fetch(`http://localhost:51044/delalo/users/${id}`)
 
       const data = await res.json()
 
       return data
   },
+  },
+    async created() {
+    const res= await this.fetchUser(this.id);
+   
+    if(res){
+
+        this.user = res;
+    }
 }
+
+
 }
 </script>
 
