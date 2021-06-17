@@ -116,7 +116,7 @@ export default {
     console.log("D",data);
       
       res.status === 200
-          ? window.location.href ='../Services'
+          ? window.location.href ='../Login'
           : alert('User Successfully created')
    
 

@@ -54,13 +54,13 @@ export default {
         return{
             email: '',
             password: '',
-            access_token: '',
             
       }
+      
   },
   methods: {
        async loginUser(user) {
-
+       
         const res = await fetch('http://localhost:51044/delalo/login', {
         method: 'POST',
         mode: 'cors',
@@ -71,12 +71,22 @@ export default {
       })
     console.log("getting here")
     console.log(res);
-    console.log(await res.json())
+    const re = await res.json()
+    
+
  
       
       res.status === 200
           ? window.location.href ='../Services'
           : alert('Error logging in')
+
+        sessionStorage.setItem('token', re.access_token)
+        console.log(sessionStorage.getItem('token'));
+        sessionStorage.setItem('email', user.email)
+        console.log(sessionStorage.getItem('email'));
+        sessionStorage.setItem('id', user.id);
+        console.log(sessionStorage.getItem('id'));
+
    
 
      
@@ -95,6 +105,7 @@ export default {
         alert('Input password')
         return
       }
+
        const existUser = {
         "email": this.email,
         "password": this.password,
@@ -108,13 +119,7 @@ export default {
 
     },
     
-     mounted() {
-    this.$session.start();
-    this.$session.set("email", "user.email");
-    this.$session.store("access_token");
-    console.log(this.$session.get("email"));
-    console.log(this.$session.get("access_token"));
-  },
+    
   }
 }
 
