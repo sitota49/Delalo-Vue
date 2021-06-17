@@ -1,15 +1,15 @@
 <template>
     
-    <header>
-
+    
         <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
             <a class="navbar-brand logo" href="/">
-                <!-- <img src="../assets/logo.png" style="height:60px" /> -->
+                <img class="mr-3" :src="require('../assets/fullLogoC.jpg')" height="40"/>
+                <!-- <img v-bind:src="'/assets/' + logo.jpg" style="height:60px;" /> -->
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse mr-5" id="navbarNav">
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item active">
                         <a class="nav-link links" href="/About" style="color: #735798">About</a>
@@ -36,7 +36,7 @@
                         else
                         { -->
 
- <li class="nav-item dropdown">
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fas fa-user-alt"></i>
           </a>
@@ -62,7 +62,7 @@
         </nav>
 
 
-            </header>
+           
 </template>
 
 <script>

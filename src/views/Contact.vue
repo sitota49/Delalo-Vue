@@ -1,4 +1,5 @@
 <template>
+ <Header/>
     <section id="contact" class="contact">
     <div class="container mt-5">
 
@@ -73,17 +74,22 @@
 
     </div>
 </section>
+<Footer/>
 </template>
 
 
 <script>
+
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
 export default {
   name: 'Contact',
   props: {
    
   },
   components: {
-   
+    Header,
+    Footer
   },
   data() {
     
@@ -93,6 +99,18 @@ export default {
 }
 </script>
 
-<style>
-    @import '../assets/styleContact.css';
+<style scoped>
+@import '../assets/styleContact.css';
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900");
+
+
+@import url('../assets/css/style.css');
+
+.content {
+    margin-top: 80px;
+}
+
+
 </style>

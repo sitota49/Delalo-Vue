@@ -6,7 +6,7 @@
     <div class="row row">
         <div class="col-md-12 col text-center">
             <div class="middle  mx-auto">
-                <h2 class="px-2">Find help now for your @Model.Service.Name - needed tasks</h2>
+                <h2 class="px-2">Find help now for your {{category.Name}} - needed tasks</h2>
                 <p>Choose the right person for you and get your task done efficently!</p>
                 <div class="container chooseBtn">
                     <a href="/Provider_List" asp-route-id="@Model.Service.Id" asp-route-pag="1" class="btn btn-outline-secondary help">Find help now</a>
@@ -80,9 +80,9 @@
 </div>
 </div>
 
-  <Footer />
+ 
 </div>
-
+ <Footer />
   
 </template>
 
@@ -116,10 +116,10 @@ export default {
     },
   },
    async created() {
-    // const res= await this.fetchTopProvidersWithCategory();
-    // if (res.results.length !==0){
-    //     this.topProviders=res.results;
-    // }
+    const res= await this.fetchTopProvidersWithCategory();
+    if (res.length !==0){
+        this.topProviders=res;
+    }
    
     
   },

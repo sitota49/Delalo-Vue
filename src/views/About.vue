@@ -1,5 +1,6 @@
 <template>
   <div>
+      <Header/>
       <div class="intro-banner container-fluid " >
 
    
@@ -86,7 +87,7 @@
             <div class="col-md-2">
                 <div class="card p-3 py-4 mt-5 mb-5">
                     <div class="text-center">
-                        <img src="" width="100" class="rounded-circle">
+                        <img :src="require('../assets/amlypp.jpg')" width="100" class="rounded-circle">
                         <h6 class="mt-2">Amsale Gebrehana</h6>  <small class="mt-4"> Software engineering student at Addis Ababa University, Ethiopia</small>
                     </div>
                 </div>
@@ -94,7 +95,7 @@
             <div class="col-md-2">
                 <div class="card p-3 py-4 mt-5 mb-5">
                     <div class="text-center">
-                        <img src="" width="100" class="rounded-circle">
+                        <img :src="require('../assets/aydapp.jpg')" width="100" class="rounded-circle">
                         <h6 class="mt-2">Ayda Sultan</h6>  <small class="mt-4"> Software engineering student at Addis Ababa University, Ethiopia</small>
                     </div>
                 </div>
@@ -103,7 +104,7 @@
             <div class="col-md-2">
                 <div class="card p-3 py-4 mt-5 mb-5">
                     <div class="text-center">
-                        <img src="" width="100" class="rounded-circle">
+                        <img :src="require('../assets/binipp.jpg')" width="100" class="rounded-circle">
                         <h6 class="mt-2">Biniyam Abiy</h6>  <small class="mt-4"> Software engineering student at Addis Ababa University, Ethiopia</small>
                     </div>
                 </div>
@@ -111,7 +112,7 @@
             <div class="col-md-2 ">
                 <div class="card p-3 py-4 mt-5">
                     <div class="text-center">
-                        <img src="" width="100" class="rounded-circle">
+                        <img :src="require('../assets/selpp.jpg')" width="100" class="rounded-circle">
                         <h6 class="mt-2">Selamawit Elias</h6>  <small class="mt-4"> Software engineering student at Addis Ababa University, Ethiopia</small>
                     </div>
                 </div>
@@ -119,7 +120,7 @@
             <div class="col-md-2">
                 <div class="card p-3 py-4 mt-5">
                     <div class="text-center">
-                        <img src="" width="100" class="rounded-circle">
+                        <img :src="require('../assets/sitpp.jpg')" width="100" class="rounded-circle">
                         <h6 class="mt-2">Sitota Ezra</h6>  <small class="mt-4"> Software engineering student at Addis Ababa University, Ethiopia</small>
                     </div>
                 </div>
@@ -191,9 +192,30 @@
     </div>
 
   </section>
+  <Footer/>
 </div>
 
 </template>
+<script>
+
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
+export default {
+  name: 'Services',
+  props: {
+   
+  },
+  components: { 
+    Header,
+    Footer
+  },
+  data() {
+    
+  },
+  methods: {
+  }
+}
+</script>
 
 
 <style>
@@ -202,6 +224,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900");
 @import '../assets/styleAbout.css';
 @import '../assets/styles.css';
-@import'~bootstrap/dist/css/bootstrap.css'
+@import'~bootstrap/dist/css/bootstrap.css';
    
 </style>

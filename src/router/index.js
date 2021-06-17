@@ -10,6 +10,10 @@ import Contact from '../views/Contact'
 import Blog from '../views/Blog'
 import Errors from '../views/Errors'
 import UserProfile from '../views/userProfile'
+import BecomeAProvider from '../views/BecomeAProvider'
+
+
+
 import Profile from '../views/Profile'
 import Orders from '../views/Orders'
 import Jobs from '../views/Jobs'
@@ -46,6 +50,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register,
+  },
+  {
+    path: '/becomeAProvider',
+    name: 'BecomeAProvider',
+    component: BecomeAProvider,
   },
   {
     path: '/authen',
