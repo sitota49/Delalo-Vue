@@ -32,12 +32,12 @@
 <div class="container-fluid d-flex px-5 mx-5 py-3row">
     <h1 class="align-self-center text-center col-md-12 mt-4">Services We Have Got</h1>
 </div>
-<ProjectAreas />
+ <ProjectAreas :categories="categories" />
 </div>
-  <Footer />
+ 
 </div>
 
-  
+   <Footer />
 </template>
 
 <script>
@@ -56,11 +56,37 @@ export default {
     Footer, 
     ProjectAreas},
   data() {
-    
+    return {
+     
+      categories:[]
+    }
   },
   methods: {
+   
+     async fetchCategories() {
+      const res = await fetch('http://localhost:51044/delalo/categories')
+
+      const data = await res.json()
+
+      return data
+    },
+    
+
+  },
+    
+    async created() {
+   
+    const resCategories= await this.fetchCategories();
+    if (resCategories.length !==0){
+        this.categories=resCategories;
+    }
+   
+   
+    
   }
 }
+
+
 </script>
 
 <style scoped>

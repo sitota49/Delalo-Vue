@@ -1,5 +1,5 @@
 .bg-overlayspec {
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../img/service.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(../service.jpg);
     /* opacity: 1; */
     background-repeat: no-repeat;
     background-size: cover;

@@ -10,10 +10,14 @@ import Contact from '../views/Contact'
 import Blog from '../views/Blog'
 import Errors from '../views/Errors'
 import UserProfile from '../views/userProfile'
+import BecomeAProvider from '../views/BecomeAProvider'
+
+
+
 import Profile from '../views/Profile'
 import Orders from '../views/Orders'
 import Jobs from '../views/Jobs'
-import BecomeAProvider from '../views/BecomeAProvider'
+
 import Logout from '../views/Logout'
 
 import Services from '../views/Services'
@@ -53,6 +57,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register,
+  },
+  {
+    path: '/becomeAProvider',
+    name: 'BecomeAProvider',
+    component: BecomeAProvider,
   },
   {
     path: '/authen',
@@ -144,11 +153,7 @@ const routes = [
     name: 'AdminProvider',
     component: AdminProvider,
   },
-  {
-    path: '/becomeAProvider',
-    name: 'BecomeAProvider',
-    component: BecomeAProvider,
-  },
+ 
     {
     path: '/DeleteCategory/:id',
     name: 'DeleteCategory',

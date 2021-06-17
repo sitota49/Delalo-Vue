@@ -14,7 +14,7 @@
                   
                 </ul>
                 <ul class="list-unstyled my-xl-4 my-md-3">
-                    <li><a href="/Index"></a></li>
+                    <li><a href="/"></a></li>
 
                 </ul>
             </div>
@@ -31,8 +31,8 @@
                 <ul class="list-unstyled">
                     <li class="mt-md-0 mt-4" style="font-weight:bold; font-size:20px;">Get Started</li>
                     <li><a href="/BecomeaProvider" id="footerLink">Become a Provider</a> </li>
-                    <li><a href="/services" id="footerLink">All services</a></li>
-                    <li><a href="/AuthOption" id="footerLink">Signup/Login</a> </li>
+                    <li><a href="/Services" id="footerLink">All services</a></li>
+                    <li><a href="/Authen" id="footerLink">Signup/Login</a> </li>
                     <li><a href="/Contact" id="footerLink">Contact</a></li>
                 </ul>
             </div>

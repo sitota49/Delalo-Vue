@@ -1,6 +1,7 @@
 <template>
+<Header/>
 <div class="container-fluid" >
-  <Header/>
+  
   <div class="container-fluid content">
       <div class="back_img">
 
@@ -12,64 +13,66 @@
 
                     <div class="row mt-4 g-1 px-4 mb-5">
                         <div class="col-md-2">
-                            <div class="card-inner p-3 d-flex flex-column align-items-center">
-                                <img src="https://i.imgur.com/Mb8kaPV.png" width="50" fill="purple" style="color: purple !important;">
+                            <div class="card-inner p-2 d-flex flex-column align-items-center">
+                                <img src="https://i.imgur.com/Mb8kaPV.png" width="35" fill="purple" style="color: purple !important;">
                                 <div class="text-center mg-text"> <span class="mg-text">Account</span> </div>
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <div class="card-inner p-3 d-flex flex-column align-items-center">
-                                <img src="https://i.imgur.com/ueLEPGq.png" width="50" fill="purple" style="color: purple !important;">
+                            <div class="card-inner p-2 d-flex flex-column align-items-center">
+                                <img src="https://i.imgur.com/ueLEPGq.png" width="35" fill="purple" style="color: purple !important;">
                                 <div class="text-center mg-text"> <span class="mg-text">Payments</span> </div>
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <div class="card-inner p-3 d-flex flex-column align-items-center">
-                                <img src="https://i.imgur.com/tmqv0Eq.png" width="50">
+                            <div class="card-inner p-2 d-flex flex-column align-items-center">
+                                <img src="https://i.imgur.com/tmqv0Eq.png" width="35">
                                 <div class="text-center mg-text"> <span class="mg-text">Delivery</span> </div>
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <div class="card-inner p-3 d-flex flex-column align-items-center">
-                                <img src="https://i.imgur.com/D0Sm15i.png" width="50">
+                            <div class="card-inner p-2 d-flex flex-column align-items-center">
+                                <img src="https://i.imgur.com/D0Sm15i.png" width="35">
                                 <div class="text-center mg-text"> <span class="mg-text">Product</span> </div>
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <div class="card-inner p-3 d-flex flex-column align-items-center">
-                                <img src="https://i.imgur.com/Z7BJ8Po.png" width="50">
+                            <div class="card-inner p-2 d-flex flex-column align-items-center">
+                                <img src="https://i.imgur.com/Z7BJ8Po.png" width="35">
                                 <div class="text-center mg-text"> <span class="mg-text">Anytime</span> </div>
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <div class="card-inner p-3 d-flex flex-column align-items-center">
-                                <img src="https://i.imgur.com/YLsQrn3.png" width="50">
+                            <div class="card-inner p-2 d-flex flex-column align-items-center">
+                                <img src="https://i.imgur.com/YLsQrn3.png" width="35">
                                 <div class="text-center mg-text"> <span class="mg-text">Guarantee</span> </div>
                             </div>
                         </div>
-                    </div>
-                    <div class=" bg-gray-200">
-
-                        <div class="container conform">
+                        <div class="container conform mb-3 mt-4 ml-4"  >
                             <div class="row text-center">
-                                <div class="col-md-12 text-center">
-                                    <form>
+                                <div class="col-md-8 text-center">
+                                    <form style="marigin-top:10px;">
                                         <div class="input-group">
-                                            <div class="form-outline">
+                                            <div class="form-outline ">
                                                 <input name="searchString" type="text" id="form1" class="form-control" placeholder="Search services here..." />
-
+                                                
                                             </div>
-                                            <button type="submit" class="btn btnsearch" asp-page="/Index">
+                                            <button  type="submit" class="btn btnsearch " href="#">
                                                 <i class="fas fa-search"></i>
                                             </button>
                                         </div>
+                                        
 
                                     </form>
                                 </div>
 
                             </div>
+                    </div>
+                    <!-- <div class=" bg-gray-200">
 
-                        </div>
+                        
+
+                        </div> -->
                     </div>
                 </div>
 
@@ -81,9 +84,9 @@
 
       </div>
   <div class="container-fluid d-flex px-5 mx-5 py-3row">
-         <h1 class="align-self-center text-center col-md-12 mt-4">Project Areas</h1>
+         <h1 class="align-self-center text-center col-md-10 mt-4" style="font-size: 2rem;">Project Areas</h1>
       </div>
-    <ProjectAreas />
+    <ProjectAreas :categories="categories" />
     
     <FeaturedTaskers :topProviders="topProviders"/>
    
@@ -118,9 +121,9 @@
     </div>
       </section>
   </div>
-  <Footer />
+  
 </div>
-
+<Footer />
   
 </template>
 
@@ -144,6 +147,7 @@ export default {
   data() {
      return {
       topProviders:[],
+      categories:[]
     }
   },
   methods:{
@@ -155,18 +159,31 @@ export default {
       return data
     },
     
+     async fetchCategories() {
+      const res = await fetch('http://localhost:51044/delalo/categories')
+
+      const data = await res.json()
+
+      return data
+    },
     
 
   },
     
     async created() {
-    const res= await this.fetchTopProviders();
-    if (res.results.length !==0){
-        this.topProviders=res.results;
+    const resTopProviders= await this.fetchTopProviders();
+    if (resTopProviders.results.length !==0){
+        this.topProviders=resTopProviders.results;
+    }
+
+    const resCategories= await this.fetchCategories();
+    if (resCategories.length !==0){
+        this.categories=resCategories;
     }
    
+   
     
-  },
+  }
 }
 
 
@@ -178,8 +195,8 @@ export default {
 
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800,900|Rubik:300,400,500,700,900");
 
-@import url('../assets/css/style.css');
-
+@import '../assets/css/style.css';
+/* @import'~bootstrap/dist/css/bootstrap.css'; */
 .content {
     margin-top: 80px;
 }
