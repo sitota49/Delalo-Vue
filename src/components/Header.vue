@@ -25,6 +25,8 @@
 
                     @{ if (HttpContextAccessor.HttpContext.Session.GetString("email") == null)
                         { -->
+                        <!-- <div v-if="sessionStorage.getItem('token') != null"> -->
+
                         
                             <li class="nav-item">
                                 <a class="nav-link links" href="/Authen" asp-route-providerId="0" style="color: #735798">Signup/Login</a>
@@ -32,25 +34,28 @@
                             <li class="nav-item">
                                 <a class="btn btn-outline-secondary providerbtn" href="/BecomeaProvider">Become a Provider</a>
                             </li>
+                            <!-- </div> -->
 
                         <!-- }
                         else
                         { -->
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fas fa-user-alt"></i>
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li>  <a class="dropdown-item" href= "userProfile/id?"  >Profile</a></li>
-                 <!-- @if (HttpContextAccessor.HttpContext.Session.GetString("role") == "provider")
-                                                    { -->
-            <li> <a class="dropdown-item" href="/Jobs">Jobs</a></li>
-         <!-- } -->
-            <li><a class="dropdown-item" href="/Orders">Orders</a></li>
-             <li><a class="dropdown-item" href="/Logout" >Logout</a></li>
-          </ul>
-        </li>
+                        <!-- <div v-else> -->
+                                <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user-alt"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li>  <a class="dropdown-item" href= "userProfile/id?"  >Profile</a></li>
+                                        <!-- @if (HttpContextAccessor.HttpContext.Session.GetString("role") == "provider")
+                                                                            { -->
+                                    <li> <a class="dropdown-item" href="/Jobs">Jobs</a></li>
+                                <!-- } -->
+                                    <li><a class="dropdown-item" href="/Orders">Orders</a></li>
+                                    <li><a class="dropdown-item" href="/Logout" >Logout</a></li>
+                                </ul>
+                                </li>
+                        <!-- </div> -->
                     
                                         <!-- } } -->
 

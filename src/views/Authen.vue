@@ -5,7 +5,7 @@
                 <div class="card" style="border-radius:5px; height:100%; padding-bottom:20px;">
                     <div class="card-body" style="padding:4px 2px 2px 7px;">
                         <div class="col-md-4">
-                            <a asp-page="/Index" asp-route-providerId="@Model.providerId">
+                            <a href="/" >
                             <img src="../assets/logo2.jpg" style="width:300px; height:200px; margin-top:15%; padding:10%;"></a>
                             
                         </div>
@@ -19,10 +19,10 @@
                                             <div id="authBtns" class="form-group">
 
                                                 <div class="text-center ">
-                                                    <router-link to="Register"> <a type="button" class="btn btn-block send-button button1 my-2">Sign Up</a></router-link>
+                                                    <router-link to="Register"> <a type="button" class="btn btn-block send-button button1 my-2" style="background-color:#3c1361;color:white;">Sign Up</a></router-link>
                                                 </div>
                                                 <div class="text-center ">
-                                                <router-link to="Login"><a type="button" class="btn btn-block btn-outline-secondary send-button button2 my-2">Log In</a></router-link>
+                                                <router-link to="Login"><a type="button" class="btn btn-block send-button button2 my-2" style="color:#3c1361; font-weight:500;">Log In</a></router-link>
                                                 </div>
 
 

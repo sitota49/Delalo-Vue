@@ -1,4 +1,5 @@
-<template>  
+<template> 
+<Header/> 
 <div class="container mt-5 mb-5">
     <div class="row" style="margin: 12% 0% 3% 50%; text-align: center;">
         <h4 class="title">BLOG</h4>
@@ -106,16 +107,20 @@
         </div>
     </div>
 </div>
+<Footer/>
 </template>
 
 <script>
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
 export default {
   name: 'Blog',
   props: {
    
   },
   components: {
-   
+   Header,
+    Footer
   },
   data() {
     

@@ -1,5 +1,5 @@
 <template>
-    
+    <Header/>
 <div class="privacy">
     <div class="wrapper" id="dark-background">
         <div class="card" id="card-mode">
@@ -51,17 +51,21 @@
         </div>
     </div>
 </div>
+<Footer />
 </template>
 
 
 <script>
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
 export default {
   name: 'Privacy',
   props: {
    
   },
   components: {
-   
+   Header,
+    Footer
   },
   data() {
     
@@ -73,5 +77,7 @@ export default {
 
 <style>
     @import '../assets/stylePrivacy.css';
+   
+
 </style>
 

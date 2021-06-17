@@ -9,14 +9,14 @@
                 <div class="card" style="border-radius:5px; height:100%; padding-bottom:20px;">
                     <div class="card-body" style="padding:4px 2px 2px 7px;">
                         <div class="col-md-4">
-                            <a href="/Index">
-                            <img src="../assets/logo2.jpg" style="width:300px; height:200px; margin-top:15%; padding:10%;"></a>
-                            
+                            <router-link to="/">
+                            <img src="../assets/logo2.jpg" style="width:300px; height:200px; margin-top:15%; padding:10%;">
+                            </router-link>
                         </div>
                         <div class="col-md-4" style="padding:2px 2px 2px 70px;">
                             
                             <div>
-                                <h3 style="padding-bottom:10px;">  <a asp-page="/Forms/Login" asp-route-providerId="@Model.providerId">Login</a>      |      SignUp  </h3>
+                                <h3 style="padding-bottom:10px;">  <router-link to="/Login">Login</router-link>      |      SignUp  </h3>
                                 <form @submit="onSubmit" id="val7">
                                     <div class="form-group" id="val1">
                                         <label for="email">Email</label>
@@ -60,7 +60,7 @@
                                             <option>Adama</option>
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-block send-button button1 ">Sign Up</button>
+                                    <button type="submit" class="btn btn-block send-button button1 " style="background-color:#3c1361; color:white;">Sign Up</button>
                                 </form>
                             </div>
                         </div>
@@ -187,5 +187,5 @@ export default {
 </script>
 
 <style>
-
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
 </style>

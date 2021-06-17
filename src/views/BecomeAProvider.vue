@@ -27,7 +27,7 @@
 
                                 <div class="col-auto">
                                     <div class="avatar-wrapper" data-tippy-placement="bottom" title="Change Avatar">
-                                        <img class="profile-pic" src="images/user-avatar-placeholder.png" alt="" />
+                                        <img class="profile-pic" :src="require('../assets/default.jpg')" alt="" />
                                         <div class="upload-button"></div>
                                         <input  class="file-upload" type="file" accept="image/*" />
                                     </div>
@@ -365,4 +365,6 @@ export default {
     @import '../assets/styleAuth.css';
     @import '../assets/styles.css';
     @import '../assets/style3.css';
+    @import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+
 </style>

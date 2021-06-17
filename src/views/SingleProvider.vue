@@ -10,7 +10,7 @@
                 <div class="single-page-header-inxner">
                     <div class="left-side">
                         <div class="header-image freelancer-avatar">
-                            <!-- <img src="../.@Model.providerUser.Image" alt=""> -->
+                            <img :src="require('../assets/default.jpg')" alt="">
                             </div>
                         <div class="header-details">
                             <h3>{{provider.user_info.firstname}} {{provider.user_info.lastname}} </h3>
