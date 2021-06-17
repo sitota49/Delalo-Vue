@@ -142,6 +142,9 @@ const routes = [
     path: '/becomeAProvider',
     name: 'BecomeAProvider',
     component: BecomeAProvider,
+   
+  },
+  {
     path: '/DeleteCategory/:id',
     name: 'DeleteCategory',
     component: DeleteCategory,

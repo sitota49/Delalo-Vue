@@ -13,7 +13,6 @@
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-active" role="tabpanel" aria-labelledby="pills-active-tab">
                     <div class="container">
-
                         <div  v-if="ordersAccepted.length !== 0 ">
                                  <table class="table">
                                 <thead class="thead-dark">
@@ -23,15 +22,16 @@
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
-                                <tbody  :key="order.id" v-for="order in ordersAccepted">
+                                <tbody  :key="order.order.id" v-for="order in ordersAccepted">
+                                  
                                    <tr>
                                             <th scope="row">{{order.provider.user_info.firstname}}{{order.provider.user_info.lastname}}</th>
                                             <td>
                                                 <p>Service: {{order.provider.provider_info.category}}</p>
                                                 <p>Phone number: {{order.provider.user_info.phone}}</p>
                                                 <p>Price per hour: {{order.provider.provider_info.per_hour_wage}}</p>
-                                                <p>Hours Worked: {{Math.trunc(order.order.saved_time*100)/100}}</p>
-                                                <p>Current Total:  {{Math.trunc((order.order.saved_time*parseDouble(order.order.per_hour_wage))*100)/100}}</p>
+                                                <p>Hours Worked: {{Math.trunc(parseFloat(order.order.saved_time)*100)/100}}</p>
+                                                <p>Current Total:  {{Math.trunc((parseFloat(order.order.saved_time)*parseFloat(order.provider.provider_info.per_hour_wage))*100)/100}}</p>
                                             </td>
                                             <td>
 
@@ -73,7 +73,8 @@
                                                     </div>                                             
                                          
                                             </td>
-                                        </tr>
+                                    </tr>
+                                    
                                   
                                 </tbody>
                             </table>
@@ -200,6 +201,7 @@ export default {
       ordersHistory: Array,
   },
  
+  
   data() {
       return{
            Comment: '',
@@ -210,6 +212,14 @@ export default {
       }
     
   },
+
+//    computed:{
+//        ordersAcceptedData : function(ordersAccepted){
+//            return JSON.parse(JSON.stringify(ordersAccepted));
+//        }
+       
+         
+//   },
   methods: {
     async addReview(review) {
 
@@ -230,6 +240,8 @@ export default {
           : alert('Error creating review')
    
     },
+
+   
 
     startTime(orderId){
         console.log(orderId);
@@ -268,7 +280,13 @@ export default {
   
    
     
-  }
+  },
+     async created() {
+          console.log(this.ordersAccepted)
+  
+        
+    
+  },
 }
 </script>
 <style scoped>

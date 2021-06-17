@@ -6,7 +6,7 @@
 <br>
 
 <br>
-<OrdersDataTable  :ordersAccepted="ordersAccepted" :ordersPending="ordersPending" :ordersHistory="ordersHistory"   />
+<OrdersDataTable :ordersAccepted="ordersAccepted" :ordersPending="ordersPending" :ordersHistory="ordersHistory"   />
 
 <Footer />
     </div>
@@ -31,18 +31,15 @@ export default {
   data() {
     return {
       id: parseInt(sessionStorage.getItem('UserID')),
-      orders:[],
+      orders:null,
       ordersAccepted:[],
       ordersPending:[],
-      ordersHistory:[],
-       
+      ordersHistory:[],  
 
     }
   },
 
-  computed:{
-
-  },
+ 
  methods:{
       async fetchOrders(userId) {
       const res = await fetch(`http://localhost:51044/delalo/userorders/${userId}`)
@@ -51,16 +48,40 @@ export default {
 
       return data
     },
+     async fetchAcceptedOrders(userId) {
+      const res = await fetch(`http://localhost:51044/delalo/userorders/${userId}?status=accepted`)
 
-    extractAcceptedOrders(orders){
-      this.ordersAccepted= orders.filter((order) => order.order.status === "accepted");
+      const data = await res.json()
+
+      return data
     },
-    extractPendingOrders(orders){
-      this.ordersAccepted= orders.filter((order) => order.order.status === "pending");
+
+      async fetchPendingOrders(userId) {
+      const res = await fetch(`http://localhost:51044/delalo/userorders/${userId}?status=pending`)
+
+      const data = await res.json()
+
+      return data
     },
-    extractHistoryOrders(orders){
-      this.ordersAccepted= orders.filter((order) => order.order.is_completed === true);
-    }
+
+     async fetchCompleteOrders(userId) {
+      const res = await fetch(`http://localhost:51044/delalo/userorders/${userId}?complete=true`)
+
+      const data = await res.json()
+
+      return data
+    },
+
+
+
+
+  
+    // extractPendingOrders(orders){
+    //   this.ordersAccepted= orders.filter((order) => order.order.status === "pending");
+    // },
+    // extractHistoryOrders(orders){
+    //   this.ordersAccepted= orders.filter((order) => order.order.is_completed === true);
+    // }
     
 
     
@@ -72,12 +93,28 @@ export default {
     const resOrders= await this.fetchOrders(this.id);
 
         this.orders= resOrders.results;
-        this.extractAcceptedOrders(resOrders.results);
-        this.extractPendingOrders(resOrders.results);
-        this.extractHistoryOrders(resOrders.results);
+        // this.extractAcceptedOrders(resOrders.results);
+        // this.extractPendingOrders(resOrders.results);
+        // this.extractHistoryOrders(resOrders.results);
+
+         const resAcceptedOrders= await this.fetchAcceptedOrders(this.id);
+        console.log(resAcceptedOrders);
+
+        this.ordersAccepted= resAcceptedOrders.results;
+
+           const resPendingOrders= await this.fetchPendingOrders(this.id);
+
+        this.ordersPending= resPendingOrders.results;
+
         
-        console.log(this.orders);
-        console.log(this.ordersAccepted);
+           const resCompletedOrders= await this.fetchCompleteOrders(this.id);
+
+        this.ordersHistory= resCompletedOrders.results;
+    
+
+  
+        // const target_copy = JSON.parse(JSON.stringify( this.orders));
+        
     
   },
 }
